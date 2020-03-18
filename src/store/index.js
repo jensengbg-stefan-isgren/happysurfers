@@ -8,13 +8,17 @@ export default new Vuex.Store({
     products: [],
     cart: []
   },
-  mutations: {},
+  mutations: {
+    addProducts(state, products) {
+      state.products = products;
+    }
+  },
   actions: {
     async getProducts(context) {
       const URL = "localhost:5000/api/beans";
       let response = await fetch(URL, { method: "GET" });
       let data = response.json();
-      context.commit()
+      context.commit("addProducts", data);
     }
   },
   modules: {}
