@@ -15,10 +15,14 @@ export default new Vuex.Store({
   },
   actions: {
     async getProducts(context) {
-      const URL = "localhost:5000/api/beans";
-      let response = await fetch(URL, { method: "GET" });
-      let data = response.json();
-      context.commit("addProducts", data);
+      const URL = "http://localhost:5000/api/beans";
+      try {
+        let response = await fetch(URL, { method: "GET" });
+        let data = await response.json();
+        context.commit("addProducts", data);
+      } catch (error) {
+        console.log("Error trying to fetch data", error);
+      }
     }
   },
   modules: {}
