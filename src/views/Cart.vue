@@ -2,20 +2,20 @@
   <section>
     <!-- <nav button /> -->
     <!-- <cart button /> -->
-
+    <ShoppingCart class="shopping_cart" />
     <section class="cartCard">
       <aside class="poly"></aside>
       <h1>Din beställning</h1>
       <li v-for="(item, index) in cart" :key="index" class="orders">
         <div class="coffe">
-          <h3>{{item.title}}</h3>
+          <h3>{{ item.title }}</h3>
           <p class="dots">..................................</p>
           <br />
         </div>
-        <p class="price">{{item.price}}kr</p>
+        <p class="price">{{ item.price }}kr</p>
         <div class="amount">
           <img src="../assets/graphics/arrow-up.svg" alt />
-          <p>{{item.quantity}}</p>
+          <p>{{ item.quantity }}</p>
           <img src="../assets/graphics/arrow-down.svg" alt />
         </div>
       </li>
@@ -34,11 +34,14 @@
 </template>
 
 <script>
+import ShoppingCart from "../components/ShoppingCart";
 import { mapActions } from "vuex";
 
 export default {
   name: "Cart",
-
+  components: {
+    ShoppingCart
+  },
   computed: {
     cart() {
       return this.$store.state.cart;
@@ -54,6 +57,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.shopping_cart {
+  position: absolute;
+  right: 1.0rem;
+  top: 1rem;
+}
+
 section {
   display: flex;
   flex-direction: column;

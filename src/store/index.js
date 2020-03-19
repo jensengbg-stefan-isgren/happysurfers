@@ -29,7 +29,6 @@ export default new Vuex.Store({
       try {
         let response = await fetch(URL, { method: "GET" });
         let data = await response.json();
-        console.log(data);
         context.commit("addProducts", data);
       } catch (error) {
         console.log("Error trying to fetch data", error);
