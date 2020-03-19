@@ -11,6 +11,12 @@ export default new Vuex.Store({
   mutations: {
     addProducts(state, products) {
       state.products = products;
+    },
+    addToCart(state, product) {
+      state.cart.push(product);
+    },
+    showShoppingCart(state, cartItems) {
+      state.cart = cartItems;
     }
   },
   actions: {
@@ -19,10 +25,30 @@ export default new Vuex.Store({
       try {
         let response = await fetch(URL, { method: "GET" });
         let data = await response.json();
+        console.log(data);
         context.commit("addProducts", data);
       } catch (error) {
         console.log("Error trying to fetch data", error);
       }
+    },
+    async addToShoppingCart(context, product) {
+      const URL = "http://localhost:5000/shoppingcart";
+      let options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(product)
+      };
+      let response = await fetch(URL, options);
+      let data = await response.json();
+      context.commit("addToCart", data);
+    },
+    async getShoppingCart(context) {
+      let URL = "http://localhost:5000/shoppingcart";
+      let response = await fetch(URL, { method: "GET" });
+      let data = await response.json();
+      context.commit("showShoppingCart", data);
     }
   },
   modules: {}
