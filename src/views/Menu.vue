@@ -41,6 +41,7 @@ export default {
       if (id.length == 0) {
         product.quantity++;
         this.$store.dispatch("addToShoppingCart", product);
+        product.quantity++;
       } else {
         this.$store.dispatch("updateShoppingCart", product);
       }
