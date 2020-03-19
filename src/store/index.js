@@ -17,6 +17,10 @@ export default new Vuex.Store({
     },
     showShoppingCart(state, cartItems) {
       state.cart = cartItems;
+    },
+    updateCart(state, product) {
+      console.log(state, product);
+      product.quantity++;
     }
   },
   actions: {
@@ -49,6 +53,29 @@ export default new Vuex.Store({
       let response = await fetch(URL, { method: "GET" });
       let data = await response.json();
       context.commit("showShoppingCart", data);
+    },
+    async updateShoppingCart(context, product) {
+      let URL = "http://localhost:5000/shoppingcart";
+      let options = {
+        method: "PATCH",
+        body: JSON.stringify(product),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
+      let response = await fetch(URL, options);
+      let data = await response.json();
+      context.commit("updateCart", data);
+    }
+  },
+  getters: {
+    totalProducts(state) {
+      let items = state.cart.map(item => {
+        return item.quantity;
+      });
+      return items.reduce(function(prev, current) {
+        return prev + current;
+      }, 0);
     }
   },
   modules: {}
