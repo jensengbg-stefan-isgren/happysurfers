@@ -1,21 +1,19 @@
-const { Router } = require('express')
-const router = new Router()
-const fs = require('fs');
+const { Router } = require("express");
+const router = new Router();
+const fs = require("fs");
+const beansController = require("../controllers/beansController");
 
-router.get('/', async (req, res) => {
-    const menu = fs.createReadStream('data/menu.json');
-    menu.pipe(res);
+router.route("/").get(beansController.getProducts);
+
+router.post("/", async (req, res) => {
+  const order = {
+    eta: 13,
+    orderNr: "SW921389B"
+  };
+
+  setTimeout(() => {
+    res.send(order);
+  }, 2000);
 });
 
-router.post('/', async (req, res) => {
-    const order = {
-        eta: 13,
-        orderNr: 'SW921389B',
-    }
-
-    setTimeout(() => {
-        res.send(order);
-    }, 2000);
-});
-
-module.exports = router
+module.exports = router;
