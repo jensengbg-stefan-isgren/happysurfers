@@ -1,5 +1,4 @@
 <template>
-
   <section class="menu">
     <h1>TJO</h1>
     <div v-for="(product, index) in products" :key="index" v-on:click="addItem(product, index)">
@@ -7,11 +6,6 @@
       <p>{{ product.title }}</p>
     </div>
   </section>
-
-  <div>
-    <h1 class="title">MENU</h1>
-  </div>
-
 </template>
 
 <script>
