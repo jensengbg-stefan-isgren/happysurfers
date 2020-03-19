@@ -6,7 +6,8 @@ const cartController = require("../controllers/cartController");
 router
   .route("/")
   .post(cartController.addToShoppingCart)
-  .get(cartController.showShoppingCart);
+  .get(cartController.showShoppingCart)
+  .patch(cartController.updateShoppingCart);
 
 // router.post("/", async (req, res) => {
 //   const order = {
