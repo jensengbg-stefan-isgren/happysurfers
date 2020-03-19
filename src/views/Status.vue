@@ -1,0 +1,78 @@
+<template>
+  <section class="background">
+    <section class="status">
+      <p class="orderNr">
+        Ordernummer
+        <span>#12DK1312</span>
+      </p>
+      <img src="../assets/graphics/drone.svg" alt />
+      <h1>Din beställning är påväg!</h1>
+      <p class="eta">
+        ETA
+        <span>14 minuter</span>
+      </p>
+      <button>Ok, cool!</button>
+    </section>
+  </section>
+</template>
+
+<script>
+export default {
+  name: "status"
+};
+</script>
+
+<style lang="scss" scoped>
+.background {
+  background: $orange;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.status {
+  height: 80%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  font-family: $body;
+
+  .orderNr {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+
+    span {
+      font-weight: 900;
+    }
+  }
+  h1 {
+    font-size: 2.1rem;
+    color: white;
+    font-family: $header;
+  }
+
+  button {
+    width: 11.5rem;
+    height: 3.5rem;
+    border-radius: 50px;
+    color: black;
+    background-color: white;
+    outline: none;
+    border: none;
+    font-family: $header;
+    font-size: 1.5rem;
+  }
+}
+.eta {
+  font-size: 1.4rem;
+  color: #ffffff;
+  font-family: $body;
+
+  span {
+    font-weight: 900;
+  }
+}
+</style>
