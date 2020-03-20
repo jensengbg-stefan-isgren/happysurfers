@@ -11,14 +11,19 @@
         ETA
         <span>14 minuter</span>
       </p>
-      <button>Ok, cool!</button>
+      <button @click="toMenu">Ok, cool!</button>
     </section>
   </section>
 </template>
 
 <script>
 export default {
-  name: "status"
+  name: "status",
+  methods: {
+    toMenu() {
+      this.$router.push("/menu");
+    }
+  }
 };
 </script>
 
