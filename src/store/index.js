@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     products: [],
     cart: [],
-    showMenu: false
+    showMenu: false,
+    showCart: false
   },
   mutations: {
     addProducts(state, products) {
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     },
     showMenu(state) {
       state.showMenu = !state.showMenu;
+    },
+    toggleCart(state) {
+      state.showCart = !state.showCart;
     }
   },
   actions: {
@@ -75,6 +79,14 @@ export default new Vuex.Store({
     totalProducts(state) {
       let items = state.cart.map(item => {
         return item.quantity;
+      });
+      return items.reduce(function(prev, current) {
+        return prev + current;
+      }, 0);
+    },
+    totalPrice(state) {
+      let items = state.cart.map(item => {
+        return item.price;
       });
       return items.reduce(function(prev, current) {
         return prev + current;

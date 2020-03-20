@@ -2,6 +2,7 @@
   <section class="bg_section">
     <section class="cartCard">
       <h1>Din beställning</h1>
+      <EmptyCart v-if="cart <= 0" class="empty_cart" />
       <li v-for="(item, index) in cart" :key="index" class="orders">
         <div class="coffe">
           <h3>{{ item.title }}</h3>
@@ -20,28 +21,35 @@
         <p class="dots">..................................</p>
         <br />
         <p class="inkl">inkl moms + drönarleverans</p>
-        <h2 class="totalPrice">249kr</h2>
+        <h2 class="totalPrice">{{totalPrice}} kr</h2>
         <br />
 
-        <button @click="toStatus" class="orderButton">Take my money!</button>
+        <button
+          :class="cart <= 0 ? 'orderButtonEmpty' : 'orderButton'"
+          @click="toStatus"
+          class="orderButton"
+          :disabled="cart <= 0"
+        >Take my money!</button>
       </div>
     </section>
   </section>
 </template>
 
 <script>
-//import ShoppingCart from "../components/ShoppingCart";
-import { mapActions } from "vuex";
-
+import { mapActions, mapState, mapGetters } from "vuex";
+import EmptyCart from "@/components/EmptyCart";
 export default {
   name: "Cart",
-  /*  components: {
-    ShoppingCart
-  }, */
+
   computed: {
+    ...mapState(["cart"]),
+    ...mapGetters(["totalPrice"]),
     cart() {
       return this.$store.state.cart;
     }
+  },
+  components: {
+    EmptyCart
   },
   created() {
     this.$store.dispatch("getShoppingCart");
@@ -181,5 +189,19 @@ section {
   font-family: $header;
   border: none;
   outline: none;
+}
+
+.orderButtonEmpty {
+  background-color: $orange;
+}
+
+.empty_cart {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 400px;
+
+  background-color: white;
 }
 </style>
