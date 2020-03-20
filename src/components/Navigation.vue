@@ -45,7 +45,8 @@ section {
   align-items: center;
 }
 nav {
-  transform: translateY(-10rem);
+  top: 10rem;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
