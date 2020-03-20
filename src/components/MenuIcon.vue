@@ -1,13 +1,18 @@
 <template>
   <div>
-    <div class="outer">
+    <div @click="showMenu" class="outer">
       <img src="@/assets/graphics/navicon.svg" alt />
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapMutations } from "vuex";
+export default {
+  methods: {
+    ...mapMutations(["showMenu"])
+  }
+};
 </script>
 
 <style lang="scss" scoped>

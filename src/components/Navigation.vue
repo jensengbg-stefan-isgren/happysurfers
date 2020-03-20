@@ -24,7 +24,7 @@ export default {
       this.$router.push("/about");
     },
     toStatus() {
-      this.$$router.pus("/status");
+      this.$router.pus("/status");
     }
   }
 };
