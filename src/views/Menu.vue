@@ -1,6 +1,7 @@
 <template>
   <section class="menu">
-    <ShoppingCart class="shopping_cart" />
+    <ShoppingCart class="shopping_cart" @click.native="showCart = !showCart" />
+    <Cart v-if="showCart" />
     <h1 class="title">Menu</h1>
     <div
       class="product"
@@ -28,9 +29,17 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import ShoppingCart from "../components/ShoppingCart";
+import Cart from "../components/Cart";
 export default {
+  name: "Menu",
   components: {
-    ShoppingCart
+    ShoppingCart,
+    Cart
+  },
+  data: () => {
+    return {
+      showCart: false
+    };
   },
   created() {
     this.$store.dispatch("getProducts");
@@ -73,6 +82,7 @@ export default {
   position: absolute;
   right: 1rem;
   top: 1rem;
+  z-index: 1;
 }
 
 .add_btn {
@@ -129,6 +139,5 @@ img {
 .product_price {
   font-family: $header;
   font-size: 1.4rem;
-
 }
 </style>

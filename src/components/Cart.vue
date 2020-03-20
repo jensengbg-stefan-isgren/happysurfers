@@ -1,8 +1,5 @@
 <template>
   <section class="bg_section">
-    <!-- <nav button /> -->
-    <!-- <cart button /> -->
-    <ShoppingCart class="shopping_cart" />
     <section class="cartCard">
       <aside class="poly"></aside>
       <h1>Din beställning</h1>
@@ -27,21 +24,21 @@
         <h2 class="totalPrice">249kr</h2>
         <br />
 
-        <button class="orderButton">Take my money!</button>
+        <button @click="toStatus" class="orderButton">Take my money!</button>
       </div>
     </section>
   </section>
 </template>
 
 <script>
-import ShoppingCart from "../components/ShoppingCart";
+//import ShoppingCart from "../components/ShoppingCart";
 import { mapActions } from "vuex";
 
 export default {
   name: "Cart",
-  components: {
+  /*  components: {
     ShoppingCart
-  },
+  }, */
   computed: {
     cart() {
       return this.$store.state.cart;
@@ -51,7 +48,11 @@ export default {
     this.$store.dispatch("getShoppingCart");
   },
   methods: {
-    ...mapActions(["getShoppingCart"])
+    ...mapActions(["getShoppingCart"]),
+    toStatus() {
+      console.log("hello");
+      this.$router.push("/status");
+    }
   }
 };
 </script>
@@ -92,6 +93,7 @@ section {
   border-right: 15px solid transparent;
   border-bottom: 20px solid white;
   border-radius: 2px;
+  z-index: 2;
 }
 
 .cartCard {

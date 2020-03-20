@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div @click="toCart" class="outer">
-      <img src="../assets/graphics/bag.svg" alt="" />
+    <div class="outer">
+      <img src="../assets/graphics/bag.svg" alt />
       <div class="inner">
         <p>{{ totalProducts }}</p>
       </div>
@@ -15,11 +15,6 @@ export default {
   computed: {
     ...mapState(["cart"]),
     ...mapGetters(["totalProducts"])
-  },
-  methods: {
-    toCart() {
-      this.$router.push("/cart");
-    }
   }
 };
 </script>
