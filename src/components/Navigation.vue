@@ -24,7 +24,11 @@ export default {
       this.$router.push("/about");
     },
     toStatus() {
+
       this.$router.push("/status");
+=======
+      this.$router.pus("/status");
+
     }
   }
 };

@@ -1,7 +1,13 @@
 <template>
   <section class="menu">
+
     <ShoppingCart class="shopping_cart" @click.native="showCart = !showCart" />
     <Cart v-if="showCart" />
+=======
+    <Navigation v-if="showMenu" />
+    <MenuIcon class="menu_icon" />
+    <ShoppingCart class="shopping_cart" />
+
     <h1 class="title">Menu</h1>
     <div
       class="product"
@@ -17,29 +23,35 @@
         <p class="product_info">{{product.desc}}</p>
       </div>
       <p class="product_price">{{product.price}} Kr</p>
-
-      <!-- <p class="product_title">{{ product.title }}</p>
-      <p>{{ product.desc }}</p>
-      <span>...............</span>
-      <p class="price">{{ product.price }} Kr</p>-->
     </div>
   </section>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+
 import ShoppingCart from "../components/ShoppingCart";
 import Cart from "../components/Cart";
+=======
+import Navigation from "@/components/Navigation";
+import MenuIcon from "@/components/MenuIcon";
+import ShoppingCart from "@/components/ShoppingCart";
+
 export default {
   name: "Menu",
   components: {
     ShoppingCart,
+
     Cart
   },
   data: () => {
     return {
       showCart: false
     };
+
+    MenuIcon,
+    Navigation
+
   },
   created() {
     this.$store.dispatch("getProducts");
@@ -67,7 +79,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["products", "cart"])
+    ...mapState(["products", "cart", "showMenu"])
   }
 };
 </script>
@@ -139,5 +151,14 @@ img {
 .product_price {
   font-family: $header;
   font-size: 1.4rem;
+
+
+}
+
+.menu_icon {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+
 }
 </style>

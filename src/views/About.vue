@@ -1,12 +1,14 @@
 <template>
   <section class="about">
+    <Navigation v-if="showMenu" class="navigation" />
+    <MenuIcon class="menu_icon" />
     <h1 class="title">Vårt Kaffe</h1>
     <article class="about_info">
       <span class="ingress">
         Pumpkin spice mug, barista cup, sit macchiato, kopi-luwak, doppio,
         grounds dripper, crema, strong whipped, variety extra iced id lungo half
-        and half mazagran. Pumpkin spice.</span
-      >
+        and half mazagran. Pumpkin spice.
+      </span>
       <p>
         Que dark fair trade, spoon decaffeinated, barista wings whipped, as rich
         aftertaste, con panna milk black, arabica white rich beans single shot
@@ -28,7 +30,7 @@
       </p>
     </article>
     <article class="owner">
-      <img class="portrait" src="../assets/graphics/eva-cortado.jpg" alt="" />
+      <img class="portrait" src="../assets/graphics/eva-cortado.jpg" alt />
       <h5>Eva Cortado</h5>
       <p class="owner_title">VD & Grundare</p>
     </article>
@@ -36,7 +38,18 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+import Navigation from "@/components/Navigation";
+import MenuIcon from "@/components/MenuIcon";
+export default {
+  components: {
+    MenuIcon,
+    Navigation
+  },
+  computed: {
+    ...mapState(["showMenu"])
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -48,6 +61,7 @@ export default {};
 }
 
 .about {
+  position: relative;
   margin: auto;
   background: url(../assets/graphics/graphics-header.svg) center top no-repeat,
     url(../assets/graphics/graphics-footer.svg) center bottom no-repeat;
@@ -95,5 +109,19 @@ h5 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.menu_icon {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.navigation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>

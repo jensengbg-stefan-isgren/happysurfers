@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     products: [],
-    cart: []
+    cart: [],
+    showMenu: false
   },
   mutations: {
     addProducts(state, products) {
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     updateCart(state, product) {
       console.log(state, product);
       // product.quantity++;
+    },
+    showMenu(state) {
+      state.showMenu = !state.showMenu;
     }
   },
   actions: {
