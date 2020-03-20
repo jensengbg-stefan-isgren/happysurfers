@@ -1,5 +1,6 @@
 <template>
   <section class="menu">
+    <MenuIcon class="menu_icon" />
     <ShoppingCart class="shopping_cart" />
     <h1 class="title">Menu</h1>
     <div
@@ -22,10 +23,12 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import MenuIcon from "@/components/MenuIcon";
 import ShoppingCart from "../components/ShoppingCart";
 export default {
   components: {
-    ShoppingCart
+    ShoppingCart,
+    MenuIcon
   },
   created() {
     this.$store.dispatch("getProducts");
@@ -124,5 +127,11 @@ img {
 .product_price {
   font-family: $header;
   font-size: 1.4rem;
+}
+
+.menu_icon {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
 }
 </style>
