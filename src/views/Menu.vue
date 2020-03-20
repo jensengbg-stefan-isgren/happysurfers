@@ -1,11 +1,11 @@
 <template>
   <section class="menu">
-    <ShoppingCart class="shopping_cart" @click.native="showCart = !showCart" />
+    <ShoppingCart class="shopping_cart" @click.native="toggleShoppingCart" />
     <aside class="poly" v-if="showCart"></aside>
     <Cart class="cart" v-if="showCart" />
     <Navigation class="navigation" v-if="showMenu" />
     <MenuIcon class="menu_icon" />
-    <h1 class="title">Menu</h1>
+    <h1 class="title">Meny</h1>
     <div
       class="product"
       v-for="(product, index) in products"
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapMutations } from "vuex";
 import Cart from "../components/Cart";
 import Navigation from "@/components/Navigation";
 import MenuIcon from "@/components/MenuIcon";
@@ -39,11 +39,6 @@ export default {
     Navigation,
     Cart
   },
-  data: () => {
-    return {
-      showCart: false
-    };
-  },
   created() {
     this.$store.dispatch("getProducts");
     this.$store.dispatch("getShoppingCart");
@@ -55,6 +50,10 @@ export default {
       "getShoppingCart",
       "updateShoppingCart"
     ]),
+    ...mapMutations(["toggleCart"]),
+    toggleShoppingCart() {
+      this.$store.commit("toggleCart");
+    },
     addItem(product) {
       //Måste hämta befintlig produkt från databasen för att kolla quantity
       // sen kan du därifrån öka värdet och skicka tillbaka till DB!
@@ -70,7 +69,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["products", "cart", "showMenu"])
+    ...mapState(["products", "cart", "showMenu", "showCart"])
   }
 };
 </script>
