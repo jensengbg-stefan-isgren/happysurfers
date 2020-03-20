@@ -84,7 +84,7 @@ export default {
   position: absolute;
   right: 1rem;
   top: 1rem;
-  z-index: 2;
+  z-index: 1;
 }
 
 .add_btn {
@@ -150,13 +150,16 @@ img {
   z-index: 0;
 }
 
-.navigation,
-.cart {
+.navigation {
   z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.cart {
+  position: absolute;
 }
 </style>
