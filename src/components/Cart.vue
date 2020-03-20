@@ -1,7 +1,6 @@
 <template>
   <section class="bg_section">
     <section class="cartCard">
-      <aside class="poly"></aside>
       <h1>Din beställning</h1>
       <li v-for="(item, index) in cart" :key="index" class="orders">
         <div class="coffe">
@@ -79,21 +78,6 @@ section {
 
   height: 100vh;
   max-height: 100vh;
-}
-
-.poly {
-  position: absolute;
-  left: 83.47%;
-  right: 8%;
-  top: 8%;
-  bottom: 87.46%;
-  width: 0;
-  height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 20px solid white;
-  border-radius: 2px;
-  z-index: 1;
 }
 
 .cartCard {

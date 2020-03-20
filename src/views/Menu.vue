@@ -1,6 +1,7 @@
 <template>
   <section class="menu">
     <ShoppingCart class="shopping_cart" @click.native="showCart = !showCart" />
+    <aside class="poly" v-if="showCart"></aside>
     <Cart class="cart" v-if="showCart" />
     <Navigation class="navigation" v-if="showMenu" />
     <MenuIcon class="menu_icon" />
@@ -75,6 +76,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.poly {
+  position: absolute;
+  left: 83.47%;
+  right: 8%;
+  top: 8%;
+  bottom: 87.46%;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 20px solid white;
+  border-radius: 2px;
+  z-index: 100;
+}
 .product_info {
   font-family: $body;
   font-size: 0.75rem;
@@ -84,7 +99,7 @@ export default {
   position: absolute;
   right: 1rem;
   top: 1rem;
-  z-index: 1;
+  z-index: 3;
 }
 
 .add_btn {
@@ -151,7 +166,7 @@ img {
 }
 
 .navigation {
-  z-index: 1;
+  z-index: 5;
   position: absolute;
   top: 0;
   left: 0;
@@ -161,5 +176,6 @@ img {
 
 .cart {
   position: absolute;
+  z-index: 2;
 }
 </style>
