@@ -29,6 +29,8 @@ export default {
 
 <style lang="scss" scoped>
 .background {
+  width: 375px;
+  margin: auto;
   background: $orange;
   height: 100vh;
   display: flex;

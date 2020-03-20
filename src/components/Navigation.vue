@@ -1,6 +1,6 @@
 <template>
   <section>
-    <button>
+    <button @click="showMenu">
       <img src="../assets/graphics/close.svg" alt />
     </button>
     <nav>
@@ -14,21 +14,22 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "Nav",
   methods: {
+    ...mapMutations(["showMenu"]),
     toMenu() {
+      this.$store.commit("showMenu");
       this.$router.push("/menu");
     },
     toAbout() {
+      this.$store.commit("showMenu");
       this.$router.push("/about");
     },
     toStatus() {
-
+      this.$store.commit("showMenu");
       this.$router.push("/status");
-=======
-      this.$router.pus("/status");
-
     }
   }
 };
@@ -36,6 +37,7 @@ export default {
 
 <style lang="scss" scoped>
 section {
+  width: 375px;
   height: 100vh;
   background-color: #2f2926;
   display: flex;
@@ -43,11 +45,13 @@ section {
   align-items: center;
 }
 nav {
+  transform: translateY(-10rem);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 nav h1 {
+  cursor: pointer;
   font-size: 2rem;
   color: white;
   line-height: 38px;
@@ -59,9 +63,13 @@ nav hr {
 }
 
 button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
   position: absolute;
-  left: 2rem;
-  top: 2rem;
+  left: 1rem;
+  top: 1rem;
   width: 3rem;
   height: 3rem;
   border-radius: 100%;

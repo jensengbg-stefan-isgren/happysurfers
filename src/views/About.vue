@@ -118,6 +118,7 @@ h5 {
 }
 
 .navigation {
+  z-index: 1;
   position: absolute;
   top: 0;
   left: 0;

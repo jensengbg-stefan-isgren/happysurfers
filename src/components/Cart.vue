@@ -93,7 +93,7 @@ section {
   border-right: 15px solid transparent;
   border-bottom: 20px solid white;
   border-radius: 2px;
-  z-index: 2;
+  z-index: 3;
 }
 
 .cartCard {

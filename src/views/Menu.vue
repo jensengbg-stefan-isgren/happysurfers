@@ -1,13 +1,9 @@
 <template>
   <section class="menu">
-
     <ShoppingCart class="shopping_cart" @click.native="showCart = !showCart" />
-    <Cart v-if="showCart" />
-=======
-    <Navigation v-if="showMenu" />
+    <Cart class="cart" v-if="showCart" />
+    <Navigation class="navigation" v-if="showMenu" />
     <MenuIcon class="menu_icon" />
-    <ShoppingCart class="shopping_cart" />
-
     <h1 class="title">Menu</h1>
     <div
       class="product"
@@ -29,10 +25,7 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-
-import ShoppingCart from "../components/ShoppingCart";
 import Cart from "../components/Cart";
-=======
 import Navigation from "@/components/Navigation";
 import MenuIcon from "@/components/MenuIcon";
 import ShoppingCart from "@/components/ShoppingCart";
@@ -41,17 +34,14 @@ export default {
   name: "Menu",
   components: {
     ShoppingCart,
-
+    MenuIcon,
+    Navigation,
     Cart
   },
   data: () => {
     return {
       showCart: false
     };
-
-    MenuIcon,
-    Navigation
-
   },
   created() {
     this.$store.dispatch("getProducts");
@@ -94,7 +84,7 @@ export default {
   position: absolute;
   right: 1rem;
   top: 1rem;
-  z-index: 1;
+  z-index: 2;
 }
 
 .add_btn {
@@ -151,14 +141,22 @@ img {
 .product_price {
   font-family: $header;
   font-size: 1.4rem;
-
-
 }
 
 .menu_icon {
   position: absolute;
   top: 1rem;
   left: 1rem;
+  z-index: 0;
+}
 
+.navigation,
+.cart {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>
