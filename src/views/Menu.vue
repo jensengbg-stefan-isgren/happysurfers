@@ -16,11 +16,6 @@
         <p class="product_info">{{product.desc}}</p>
       </div>
       <p class="product_price">{{product.price}} Kr</p>
-
-      <!-- <p class="product_title">{{ product.title }}</p>
-      <p>{{ product.desc }}</p>
-      <span>...............</span>
-      <p class="price">{{ product.price }} Kr</p>-->
     </div>
   </section>
 </template>
@@ -129,6 +124,5 @@ img {
 .product_price {
   font-family: $header;
   font-size: 1.4rem;
-
 }
 </style>
