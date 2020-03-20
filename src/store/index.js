@@ -20,7 +20,7 @@ export default new Vuex.Store({
     },
     updateCart(state, product) {
       console.log(state, product);
-      product.quantity++;
+      // product.quantity++;
     }
   },
   actions: {

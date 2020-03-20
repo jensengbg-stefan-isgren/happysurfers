@@ -33,7 +33,8 @@ exports.updateShoppingCart = async (request, response) => {
   response.send(request.body);
 
   cart.findOne({ product_id: request.body.product_id }, function(err, doc) {
-    doc.quantity++;
+    console.log(request.body);
+    doc.quantity = request.body.quantity;
     doc.save();
   });
 };

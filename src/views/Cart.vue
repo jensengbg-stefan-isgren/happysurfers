@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="bg_section">
     <!-- <nav button /> -->
     <!-- <cart button /> -->
     <ShoppingCart class="shopping_cart" />
@@ -59,8 +59,14 @@ export default {
 <style lang="scss" scoped>
 .shopping_cart {
   position: absolute;
-  right: 1.0rem;
+  right: 1rem;
   top: 1rem;
+}
+
+.bg_section {
+  width: 375px;
+  margin: auto;
+  position: relative;
 }
 
 section {
