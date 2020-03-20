@@ -1,5 +1,6 @@
 <template>
   <section class="menu">
+    <Navigation v-if="showMenu" />
     <MenuIcon class="menu_icon" />
     <ShoppingCart class="shopping_cart" />
     <h1 class="title">Menu</h1>
@@ -23,12 +24,14 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import Navigation from "@/components/Navigation";
 import MenuIcon from "@/components/MenuIcon";
-import ShoppingCart from "../components/ShoppingCart";
+import ShoppingCart from "@/components/ShoppingCart";
 export default {
   components: {
     ShoppingCart,
-    MenuIcon
+    MenuIcon,
+    Navigation
   },
   created() {
     this.$store.dispatch("getProducts");
@@ -56,7 +59,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["products", "cart"])
+    ...mapState(["products", "cart", "showMenu"])
   }
 };
 </script>

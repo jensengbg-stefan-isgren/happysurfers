@@ -1,5 +1,6 @@
 <template>
   <section class="about">
+    <Navigation v-if="showMenu" class="navigation" />
     <MenuIcon class="menu_icon" />
     <h1 class="title">Vårt Kaffe</h1>
     <article class="about_info">
@@ -37,10 +38,16 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+import Navigation from "@/components/Navigation";
 import MenuIcon from "@/components/MenuIcon";
 export default {
   components: {
-    MenuIcon
+    MenuIcon,
+    Navigation
+  },
+  computed: {
+    ...mapState(["showMenu"])
   }
 };
 </script>
@@ -108,5 +115,13 @@ h5 {
   position: absolute;
   top: 1rem;
   left: 1rem;
+}
+
+.navigation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>
