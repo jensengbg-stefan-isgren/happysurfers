@@ -144,23 +144,23 @@ export default new Vuex.Store({
         console.log("DELETE ERROR :", error);
       }
     },
-    async sendOrder(context, cartItems) {
-      let URL = "http://localhost:5000/api/beans";
-      let options = {
-        method: "POST",
-        body: JSON.stringify(cartItems),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      };
-      try {
-        let response = await fetch(URL, options);
-        let data = await response.json();
-        context.commit("sendOrder", data);
-      } catch (error) {
-        console.log("DELETE ERROR :", error);
-      }
-    },
+    // async sendOrder(context, cartItems) {
+    //   let URL = "http://localhost:5000/api/beans";
+    //   let options = {
+    //     method: "POST",
+    //     body: JSON.stringify(cartItems),
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     }
+    //   };
+    //   try {
+    //     let response = await fetch(URL, options);
+    //     let data = await response.json();
+    //     context.commit("sendOrder", data);
+    //   } catch (error) {
+    //     console.log("DELETE ERROR :", error);
+    //   }
+    // },
     async getOrderHistory(context) {
       let URL = "http://localhost:5000/orderhistory";
       try {

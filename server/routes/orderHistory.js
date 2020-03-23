@@ -5,6 +5,6 @@ const historyController = require("../controllers/historyController");
 router
   .route("/")
   .get(historyController.showOrderHistory)
-  .post(historyController.saveOrder);
+  .post(historyController.sendOrder);
 
 module.exports = router;

@@ -2,21 +2,21 @@ const mongoose = require("mongoose");
 const productSchema = require("../model/productModel");
 const product = mongoose.model("products", productSchema);
 
-let timeToDelivery = () => {
-  let distance = Math.floor(Math.random() * 20) + 1;
-  let droneSpeed = 80;
+// let timeToDelivery = () => {
+//   let distance = Math.floor(Math.random() * 20) + 1;
+//   let droneSpeed = 80;
 
-  let time = (distance / droneSpeed) * 60;
-  time = Math.round(time);
-  return time;
-};
+//   let time = (distance / droneSpeed) * 60;
+//   time = Math.round(time);
+//   return time;
+// };
 
-function generateOrderNr() {
-  let letters = ["X", "Y", "Z"];
-  return `AB${Date.now()}${
-    letters[Math.floor(Math.random() * letters.length)]
-  }`;
-}
+// function generateOrderNr() {
+//   let letters = ["X", "Y", "Z"];
+//   return `AB${Date.now()}${
+//     letters[Math.floor(Math.random() * letters.length)]
+//   }`;
+// }
 
 exports.getProducts = async (request, response) => {
   try {
@@ -27,15 +27,15 @@ exports.getProducts = async (request, response) => {
   }
 };
 
-exports.sendOrder = async (request, response) => {
-  let orderedItems = request.body;
-  const order = {
-    eta: timeToDelivery(),
-    orderNr: generateOrderNr(),
-    orderItems: orderedItems
-  };
+// exports.sendOrder = async (request, response) => {
+//   let orderedItems = request.body;
+//   const order = {
+//     eta: timeToDelivery(),
+//     orderNr: generateOrderNr(),
+//     orderItems: orderedItems
+//   };
 
-  setTimeout(() => {
-    response.send(order);
-  }, 2000);
-};
+//   setTimeout(() => {
+//     response.send(order);
+//   }, 2000);
+// };

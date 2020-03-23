@@ -88,13 +88,12 @@ export default {
         let orderButton = document.querySelector(".orderButton");
         orderButton.innerHTML = "Skickar beställning";
         this.loading = true;
-        resolve(this.$store.dispatch("sendOrder", cart));
+        resolve(this.$store.dispatch("saveOrder", cart));
       });
 
       promise.then(() => {
         this.loading = false;
         this.$store.commit("toggleCart");
-        this.$store.dispatch("saveOrder", cart);
         this.$router.push("/status");
       });
     },
