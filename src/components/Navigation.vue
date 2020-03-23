@@ -10,32 +10,35 @@
       <hr />
       <h1 @click="toStatus">Orderstatus</h1>
       <hr />
-      <h1 @click="toOrderHistory">Orderhistorik</h1>
+      <h1 @click="toProfile">Profil</h1>
     </nav>
   </section>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
+
 export default {
   name: "Nav",
   methods: {
     ...mapMutations(["showMenu"]),
     toMenu() {
       this.$store.commit("showMenu");
-      this.$router.push("/menu");
+      const path = `/menu`;
+      if (this.$route.path !== path) this.$router.push("/menu");
     },
     toAbout() {
       this.$store.commit("showMenu");
-      this.$router.push("/about");
+      const path = `/about`;
+      if (this.$route.path !== path) this.$router.push("/about");
     },
     toStatus() {
       this.$store.commit("showMenu");
       this.$router.push("/status");
     },
-    toOrderHistory() {
+    toProfile() {
       this.$store.commit("showMenu");
-      this.$router.push("/orderHistory");
+      this.$router.push("/profile");
     }
   }
 };
