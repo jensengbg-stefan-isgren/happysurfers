@@ -23,11 +23,13 @@ export default {
     ...mapMutations(["showMenu"]),
     toMenu() {
       this.$store.commit("showMenu");
-      this.$router.push("/menu");
+      const path = `/menu`;
+      if (this.$route.path !== path) this.$router.push("/menu");
     },
     toAbout() {
       this.$store.commit("showMenu");
-      this.$router.push("/about");
+      const path = `/about`;
+      if (this.$route.path !== path) this.$router.push("/about");
     },
     toStatus() {
       this.$store.commit("showMenu");

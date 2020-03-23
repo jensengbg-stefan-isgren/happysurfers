@@ -8,7 +8,7 @@
       <li v-for="(item, index) in cart" :key="index" class="orders">
         <div class="coffe">
           <h3>{{ item.title }}</h3>
-          <p class="dots">.........................</p>
+          <p class="dots"></p>
           <br />
         </div>
         <p class="price">{{ item.price }}kr</p>
@@ -25,7 +25,7 @@
       </li>
       <div class="totals">
         <h2 class="totalText">Total</h2>
-        <p class="dots">..................................</p>
+        <p class="dotted"></p>
         <br />
         <p class="inkl">inkl moms + drönarleverans</p>
         <h2 class="totalPrice">{{ totalPrice }} kr</h2>
@@ -187,20 +187,25 @@ section {
   margin: 0.5rem 1rem;
   align-items: center;
 }
+h3 {
+  width: 15rem;
+  margin-right: -10rem;
+}
 
 .coffe {
   grid-area: coffe;
   display: flex;
   font-family: $header;
-
-  .dots {
-    height: 100%;
-    align-self: flex-end;
-  }
+}
+.dots {
+  height: 100%;
+  align-self: flex-end;
+  border-bottom: 2px dotted rgba(0, 0, 0, 0.4);
+  width: 26rem;
 }
 
 .price {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
   font-family: $body;
 }
 
@@ -235,9 +240,11 @@ section {
   width: 90%;
   font-family: $header;
 
-  .dots {
+  .dotted {
     justify-self: flex-start;
     align-self: flex-end;
+    border-bottom: 2px dotted rgba(0, 0, 0, 0.4);
+    width: 11.5rem;
   }
 }
 
