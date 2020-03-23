@@ -3,27 +3,33 @@
     <section class="status">
       <p class="orderNr">
         Ordernummer
-        <span>#12DK1312</span>
+        <span>{{activeOrder.orderNr}}</span>
       </p>
       <img src="../assets/graphics/drone.svg" alt />
       <h1>Din beställning är påväg!</h1>
       <p class="eta">
         ETA
-        <span>14 minuter</span>
+        <span>{{activeOrder.eta}}</span>
       </p>
-      <button @click="toMenu">Ok, cool!</button>
+      <button @click="toOrderHistory">Ok, cool!</button>
     </section>
   </section>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "status",
   methods: {
-    toMenu() {
-      this.$router.push("/menu");
+    ...mapMutations(["clearActiveOrder"]),
+    toOrderHistory() {
+      this.$router.push("/orderhistory");
+      this.$store.commit("clearActiveOrder");
     }
-  }
+  },
+  computed: {
+    ...mapState(["activeOrder"])
+  },
 };
 </script>
 

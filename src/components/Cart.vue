@@ -1,19 +1,26 @@
 <template>
   <section class="bg_section">
     <section class="cartCard">
-      <h1>Din beställning</h1>
+      <LoadingSpinner v-if="loading" class="spinner" />
+      <h1 class="primary">Din beställning</h1>
+      <button @click="clearCart(cart)" v-if="cart != 0" class="remove_cart_btn">Töm varukorgen</button>
       <EmptyCart v-if="cart <= 0" class="empty_cart" />
       <li v-for="(item, index) in cart" :key="index" class="orders">
         <div class="coffe">
           <h3>{{ item.title }}</h3>
-          <p class="dots">..................................</p>
+          <p class="dots">.........................</p>
           <br />
         </div>
         <p class="price">{{ item.price }}kr</p>
         <div class="amount">
-          <img src="../assets/graphics/arrow-up.svg" alt />
+          <img @click="addQuantity(item)" class="arrow" src="../assets/graphics/arrow-up.svg" alt />
           <p>{{ item.quantity }}</p>
-          <img src="../assets/graphics/arrow-down.svg" alt />
+          <img
+            @click="removeQuantity(item)"
+            class="arrow"
+            src="../assets/graphics/arrow-down.svg"
+            alt
+          />
         </div>
       </li>
       <div class="totals">
@@ -21,12 +28,11 @@
         <p class="dots">..................................</p>
         <br />
         <p class="inkl">inkl moms + drönarleverans</p>
-        <h2 class="totalPrice">{{totalPrice}} kr</h2>
+        <h2 class="totalPrice">{{ totalPrice }} kr</h2>
         <br />
-
         <button
           :class="cart <= 0 ? 'orderButtonEmpty' : 'orderButton'"
-          @click="toStatus"
+          @click="toStatus(cart)"
           class="orderButton"
           :disabled="cart <= 0"
         >Take my money!</button>
@@ -37,28 +43,68 @@
 
 <script>
 import { mapActions, mapState, mapGetters } from "vuex";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import EmptyCart from "@/components/EmptyCart";
 export default {
   name: "Cart",
-
+  data() {
+    return {
+      loading: false
+    };
+  },
   computed: {
-    ...mapState(["cart"]),
+    ...mapState(["cart"], "showCart"),
     ...mapGetters(["totalPrice"]),
     cart() {
       return this.$store.state.cart;
     }
   },
   components: {
-    EmptyCart
+    EmptyCart,
+    LoadingSpinner
   },
   created() {
     this.$store.dispatch("getShoppingCart");
   },
   methods: {
-    ...mapActions(["getShoppingCart"]),
-    toStatus() {
-      console.log("hello");
-      this.$router.push("/status");
+    ...mapActions([
+      "getShoppingCart",
+      "updateShoppingCart",
+      "removeFromShoppingCart",
+      "clearShoppingCart",
+      "saveOrder"
+    ]),
+    toStatus(cart) {
+      let promise = new Promise(resolve => {
+        let orderButton = document.querySelector(".orderButton");
+        orderButton.innerHTML = "Skickar beställning";
+        this.loading = true;
+        resolve(this.$store.dispatch("sendOrder", cart));
+      });
+
+      promise.then(() => {
+        this.showCart = false;
+        this.loading = false;
+        this.$store.dispatch("saveOrder", cart);
+        this.$router.push("/status");
+      });
+    },
+    addQuantity(item) {
+      let cartItem = this.cart.find(id => id.product_id === item.product_id);
+      cartItem.quantity++;
+      this.$store.dispatch("updateShoppingCart", cartItem);
+    },
+    removeQuantity(item) {
+      let cartItem = this.cart.find(id => id.product_id === item.product_id);
+      if (cartItem.quantity == 1) {
+        this.$store.dispatch("removeFromShoppingCart", cartItem);
+      } else {
+        cartItem.quantity--;
+        this.$store.dispatch("updateShoppingCart", cartItem);
+      }
+    },
+    clearCart(cart) {
+      this.$store.dispatch("clearShoppingCart", cart);
     }
   }
 };
@@ -69,6 +115,38 @@ export default {
   position: absolute;
   right: 1rem;
   top: 1rem;
+}
+
+.saving {
+  font-size: 40px;
+}
+
+.saving span {
+  font-size: 50px;
+  animation-name: blink;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.saving span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.saving span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
 }
 
 .bg_section {
@@ -122,10 +200,12 @@ section {
 }
 
 .price {
+  transform: translateY(-5px);
   font-family: $body;
 }
 
 .amount {
+  padding: 5px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,6 +213,8 @@ section {
   height: 100%;
   grid-area: amount;
   font-family: $body;
+  transform: translateY(5px);
+  font-weight: 600;
 
   img {
     color: black;
@@ -176,32 +258,16 @@ section {
   margin-left: 0.5rem;
 }
 
-.orderButton {
-  grid-area: orderButton;
-  width: 15.5rem;
-  height: 3.5rem;
-  justify-self: center;
-  font-size: 1.5rem;
-  color: white;
-  background: $brown;
-  border-radius: 3.1rem;
-  font-weight: 900;
-  font-family: $header;
-  border: none;
-  outline: none;
-}
-
-.orderButtonEmpty {
-  background-color: $orange;
-}
-
 .empty_cart {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   height: 400px;
-
   background-color: white;
+}
+
+.spinner {
+  z-index: 100;
 }
 </style>

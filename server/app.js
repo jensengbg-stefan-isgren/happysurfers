@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 
 const beansRouter = require("./routes/beans");
 const cartRouter = require("./routes/shoppingCart");
+const orderRouter = require("./routes/orderHistory");
 
 const PORT = 5000;
 
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/beans", beansRouter);
 app.use("/shoppingcart", cartRouter);
+app.use("/orderhistory", orderRouter);
 
 mongoose
   .connect(
