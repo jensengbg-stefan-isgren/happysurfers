@@ -2,6 +2,7 @@
   <section class="order_history">
     <MenuIcon class="menu_icon" />
     <Navigation class="navigation" v-if="showMenu" />
+    <Login />
     <div class="profile">
       <img class="portrait" src="../assets/graphics/sixten.png" alt />
       <h1 class="name">Sixten Kaffelövér</h1>
@@ -18,13 +19,15 @@
 import { mapState, mapActions } from "vuex";
 import MenuIcon from "@/components/MenuIcon";
 import Navigation from "@/components/Navigation";
+import Login from "@/components/Login";
 export default {
   created() {
     this.$store.dispatch("getOrderHistory");
   },
   components: {
     MenuIcon,
-    Navigation
+    Navigation,
+    Login
   },
   computed: {
     ...mapState(["products", "cart", "showMenu", "showCart"])
