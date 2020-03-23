@@ -31,18 +31,5 @@ p {
   text-align: center;
 }
 
-.order_button {
-  margin: auto;
-  width: 7.5rem;
-  height: 2.8rem;
-  justify-self: center;
-  font-size: 1.5rem;
-  color: white;
-  background: $light-green;
-  border-radius: 3.1rem;
-  font-weight: 900;
-  font-family: $header;
-  border: none;
-  outline: none;
-}
+
 </style>

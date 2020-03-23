@@ -7,17 +7,9 @@ router
   .route("/")
   .post(cartController.addToShoppingCart)
   .get(cartController.showShoppingCart)
-  .patch(cartController.updateShoppingCart);
+  .patch(cartController.updateShoppingCart)
+  .delete(cartController.removeFromShoppingCart);
 
-// router.post("/", async (req, res) => {
-//   const order = {
-//     eta: 13,
-//     orderNr: "SW921389B"
-//   };
-
-//   setTimeout(() => {
-//     res.send(order);
-//   }, 2000);
-// });
+router.route("/delete").delete(cartController.clearShoppingCart);
 
 module.exports = router;

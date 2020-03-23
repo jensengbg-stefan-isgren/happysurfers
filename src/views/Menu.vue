@@ -55,16 +55,13 @@ export default {
       this.$store.commit("toggleCart");
     },
     addItem(product) {
-      //Måste hämta befintlig produkt från databasen för att kolla quantity
-      // sen kan du därifrån öka värdet och skicka tillbaka till DB!
-
-      let id = this.cart.filter(id => id.product_id === product.product_id);
-      if (id.length == 0) {
-        product.quantity++;
+      let cartItem = this.cart.find(id => id.product_id === product.product_id);
+      if (!cartItem) {
+        product.quantity = 1;
         this.$store.dispatch("addToShoppingCart", product);
       } else {
-        product.quantity++;
-        this.$store.dispatch("updateShoppingCart", product);
+        cartItem.quantity += 1;
+        this.$store.dispatch("updateShoppingCart", cartItem);
       }
     }
   },
@@ -155,13 +152,6 @@ img {
 .product_price {
   font-family: $header;
   font-size: 1.4rem;
-}
-
-.menu_icon {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  z-index: 0;
 }
 
 .navigation {

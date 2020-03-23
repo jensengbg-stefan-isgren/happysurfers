@@ -111,12 +111,6 @@ h5 {
   align-items: center;
 }
 
-.menu_icon {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-}
-
 .navigation {
   z-index: 5;
   position: absolute;

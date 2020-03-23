@@ -9,6 +9,8 @@
       <h1 @click="toAbout">Vårt kaffe</h1>
       <hr />
       <h1 @click="toStatus">Orderstatus</h1>
+      <hr />
+      <h1 @click="toOrderHistory">Orderhistorik</h1>
     </nav>
   </section>
 </template>
@@ -30,6 +32,10 @@ export default {
     toStatus() {
       this.$store.commit("showMenu");
       this.$router.push("/status");
+    },
+    toOrderHistory() {
+      this.$store.commit("showMenu");
+      this.$router.push("/orderHistory");
     }
   }
 };
