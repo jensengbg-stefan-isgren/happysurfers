@@ -3,7 +3,9 @@
     <section class="cartCard">
       <LoadingSpinner v-if="loading" class="spinner" />
       <h1 class="primary">Din beställning</h1>
-      <button @click="clearCart(cart)" v-if="cart != 0" class="remove_cart_btn">Töm varukorgen</button>
+      <button @click="clearCart(cart)" v-if="cart != 0" class="remove_cart_btn">
+        Töm varukorgen
+      </button>
       <EmptyCart v-if="cart <= 0" class="empty_cart" />
       <li v-for="(item, index) in cart" :key="index" class="orders">
         <div class="coffe">
@@ -11,9 +13,14 @@
           <p class="dots">.........................</p>
           <br />
         </div>
-        <p class="price">{{ item.price }}kr</p>
+        <p class="price">{{ item.price * item.quantity }}kr</p>
         <div class="amount">
-          <img @click="addQuantity(item)" class="arrow" src="../assets/graphics/arrow-up.svg" alt />
+          <img
+            @click="addQuantity(item)"
+            class="arrow"
+            src="../assets/graphics/arrow-up.svg"
+            alt
+          />
           <p>{{ item.quantity }}</p>
           <img
             @click="removeQuantity(item)"
@@ -35,7 +42,9 @@
           @click="toStatus(cart)"
           class="orderButton"
           :disabled="cart <= 0"
-        >Take my money!</button>
+        >
+          Take my money!
+        </button>
       </div>
     </section>
   </section>
@@ -53,7 +62,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["cart"], "showCart"),
+    ...mapState(["cart", "showCart"]),
     ...mapGetters(["totalPrice"]),
     cart() {
       return this.$store.state.cart;
@@ -83,8 +92,8 @@ export default {
       });
 
       promise.then(() => {
-        this.showCart = false;
         this.loading = false;
+        this.$store.commit("toggleCart");
         this.$store.dispatch("saveOrder", cart);
         this.$router.push("/status");
       });

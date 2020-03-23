@@ -3,13 +3,13 @@
     <section class="status">
       <p class="orderNr">
         Ordernummer
-        <span>{{activeOrder.orderNr}}</span>
+        <span>{{ activeOrder.orderNr }}</span>
       </p>
       <img src="../assets/graphics/drone.svg" alt />
       <h1>Din beställning är påväg!</h1>
       <p class="eta">
         ETA
-        <span>{{activeOrder.eta}}</span>
+        <span>{{ activeOrder.eta }}</span>
       </p>
       <button @click="toOrderHistory">Ok, cool!</button>
     </section>
@@ -24,12 +24,11 @@ export default {
     ...mapMutations(["clearActiveOrder"]),
     toOrderHistory() {
       this.$router.push("/orderhistory");
-      this.$store.commit("clearActiveOrder");
     }
   },
   computed: {
     ...mapState(["activeOrder"])
-  },
+  }
 };
 </script>
 
