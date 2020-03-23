@@ -11,6 +11,13 @@ let timeToDelivery = () => {
   return time;
 };
 
+function generateOrderNr() {
+  let letters = ["X", "Y", "Z"];
+  return `AB${Date.now()}${
+    letters[Math.floor(Math.random() * letters.length)]
+  }`;
+}
+
 exports.getProducts = async (request, response) => {
   try {
     let products = await product.find();
@@ -24,7 +31,7 @@ exports.sendOrder = async (request, response) => {
   let orderedItems = request.body;
   const order = {
     eta: timeToDelivery(),
-    orderNr: "SW921389B",
+    orderNr: generateOrderNr(),
     orderItems: orderedItems
   };
 
