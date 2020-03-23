@@ -38,7 +38,8 @@ export default {
     },
     toProfile() {
       this.$store.commit("showMenu");
-      this.$router.push("/profile");
+      const path = `/profile`;
+      if (this.$route.path !== path) this.$router.push("/profile");
     }
   }
 };
