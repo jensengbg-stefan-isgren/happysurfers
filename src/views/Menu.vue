@@ -16,7 +16,8 @@
         <img class="add_sign" src="../assets/graphics/add.svg" alt />
       </div>
       <div>
-        <h5 class="product_title">{{product.title}}.......</h5>
+        <h5 class="product_title">{{product.title}}</h5>
+        <div class="dots"></div>
         <p class="product_info">{{product.desc}}</p>
       </div>
       <p class="product_price">{{product.price}} Kr</p>
@@ -135,6 +136,11 @@ img {
 .product_title {
   font-family: $header;
   font-size: 1.3rem;
+}
+
+.dots {
+  width: 12.5rem;
+  border-bottom: 2px dotted rgba(0, 0, 0, 0.4);
 }
 
 .price {

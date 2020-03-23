@@ -23,7 +23,10 @@ export default {
   methods: {
     ...mapMutations(["clearActiveOrder"]),
     toOrderHistory() {
-      this.$router.push("/orderhistory");
+
+      this.$router.push("/profile");
+      this.$store.commit("clearActiveOrder");
+
     }
   },
   computed: {
