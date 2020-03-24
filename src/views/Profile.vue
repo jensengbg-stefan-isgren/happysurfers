@@ -2,7 +2,7 @@
   <section class="order_history">
     <MenuIcon class="menu_icon" />
     <Navigation class="navigation" v-if="showMenu" />
-    <Login />
+    <Login v-if="user.length < 1" />
     <div class="profile">
       <img class="portrait" src="../assets/graphics/sixten.png" alt />
       <h1 class="name">Sixten Kaffelövér</h1>
@@ -12,15 +12,17 @@
       <h1 class="old_orders">Orderhistorik</h1>
       <ul>
         <li class="orders" v-for="(item, index) in orderHistory" :key="index">
-          <p @click="orderInfo(item,index)" class="order_nr">#{{item.orderNumber}}</p>
-          <p class="date">{{item.timestamp}}</p>
+          <p @click="orderInfo(item, index)" class="order_nr">
+            #{{ item.orderNumber }}
+          </p>
+          <p class="date">{{ item.timestamp }}</p>
           <p class="sum">total ordersumma</p>
-          <p class="total_price">{{item.totalValue}} kr</p>
+          <p class="total_price">{{ item.totalValue }} kr</p>
         </li>
       </ul>
       <div class="total">
         <h5 class="total_spent">Totalt spenderat</h5>
-        <p class="total_pr">{{totalPriceHistory}} kr</p>
+        <p class="total_pr">{{ totalPriceHistory }} kr</p>
       </div>
     </section>
   </section>
@@ -33,7 +35,7 @@ import Navigation from "@/components/Navigation";
 import Login from "@/components/Login";
 export default {
   created() {
-    this.$store.dispatch("getOrderHistory");
+    // this.$store.dispatch("getOrderHistory");
   },
   components: {
     MenuIcon,
@@ -42,7 +44,14 @@ export default {
   },
   computed: {
     ...mapGetters(["totalPriceHistory"]),
-    ...mapState(["products", "cart", "showMenu", "showCart", "orderHistory"])
+    ...mapState([
+      "products",
+      "cart",
+      "showMenu",
+      "showCart",
+      "orderHistory",
+      "user"
+    ])
   },
   methods: {
     orderInfo(item, index) {

@@ -5,7 +5,8 @@ const historySchema = mongoose.Schema({
   orderNumber: {},
   items: [],
   totalValue: Number,
-  eta: Number
+  eta: Number,
+  uuid: String
 });
 
 module.exports = historySchema;
