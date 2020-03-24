@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const beansRouter = require("./routes/beans");
 const cartRouter = require("./routes/shoppingCart");
 const orderRouter = require("./routes/orderHistory");
+const userRouter = require("./routes/users");
 
 const PORT = 5000;
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 app.use(express.json());
+app.use("/user", userRouter);
 app.use("/api/beans", beansRouter);
 app.use("/shoppingcart", cartRouter);
 app.use("/orderhistory", orderRouter);

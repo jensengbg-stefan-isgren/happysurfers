@@ -3,25 +3,50 @@
     <section class="overlay">
       <div class="text">
         <h1>Välkommen till AirBean-familjen!</h1>
-        <p>Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</p>
+        <p>
+          Genom att skapa ett konto nedan kan du spara och se din orderhistorik.
+        </p>
       </div>
       <div class="inputs">
         <label for="name-input" class="labels">Namn</label>
-        <input type="text" id="name-input" />
+        <input v-model="userData.name" type="text" id="name-input" />
         <label for="email-input" class="labels">Epost</label>
-        <input type="text" id="email-input" />
+        <input v-model="userData.email" type="text" id="email-input" />
         <div class="radio">
-          <input type="radio" id="gdpr" class="checkbox" />
+          <input v-model="checked" type="checkbox" id="gdpr" class="checkbox" />
           <label for="gdpr">GDPR Ok!</label>
         </div>
       </div>
-      <button class="orderButton">Brew me a cup!</button>
+      <button
+        :class="(!checked ? 'orderButtonEmpty' : 'orderButton')"
+        :disabled="!checked"
+        @click="createUser"
+      >
+        Brew me a cup!
+      </button>
     </section>
   </section>
 </template>
 
 <script>
-export default {};
+import { mapActions } from "vuex";
+export default {
+  data() {
+    return {
+      userData: {
+        name: "",
+        email: ""
+      },
+      checked: false
+    };
+  },
+  methods: {
+    ...mapActions(["createUser"]),
+    createUser() {
+      this.$store.dispatch("createUser", this.userData);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -104,7 +129,7 @@ export default {};
   margin-right: 0.5rem;
   background: transparent;
 }
-.orderButton {
+.orderButton, .orderButtonEmpty {
   align-self: center;
 }
 </style>

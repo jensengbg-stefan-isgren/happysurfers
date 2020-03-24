@@ -52,4 +52,14 @@
 
 .orderButtonEmpty {
   background-color: $orange;
+  width: 15.5rem;
+  height: 3.5rem;
+  justify-self: center;
+  font-size: 1.5rem;
+  color: white;
+  border-radius: 3.1rem;
+  font-weight: 900;
+  font-family: $header;
+  border: none;
+  outline: none;
 }
