@@ -10,10 +10,7 @@
 import { mapMutations } from "vuex";
 export default {
   methods: {
-    ...mapMutations(["toggleCart"]),
-    toMenu() {
-      this.$router.push;
-    }
+    ...mapMutations(["toggleCart"])
   },
   computed: {}
 };
@@ -30,6 +27,4 @@ p {
   font-size: 1.3rem;
   text-align: center;
 }
-
-
 </style>

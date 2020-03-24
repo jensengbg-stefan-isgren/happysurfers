@@ -1,6 +1,6 @@
 <template>
   <section class="menu">
-    <ShoppingCart class="shopping_cart" @click.native="toggleShoppingCart" />
+    <ShoppingCart class="shopping_cart" @click.native="toggleCart()" />
     <aside class="poly" v-if="showCart"></aside>
     <Cart class="cart" v-if="showCart" />
     <Navigation class="navigation" v-if="showMenu" />
@@ -27,22 +27,25 @@
 
 <script>
 import { mapActions, mapState, mapMutations } from "vuex";
-import Cart from "../components/Cart";
-import Navigation from "@/components/Navigation";
+import Cart from "@/components/Cart";
 import MenuIcon from "@/components/MenuIcon";
+import Navigation from "@/components/Navigation";
 import ShoppingCart from "@/components/ShoppingCart";
 
 export default {
   name: "Menu",
   components: {
-    ShoppingCart,
+    Cart,
     MenuIcon,
     Navigation,
-    Cart
+    ShoppingCart
   },
   created() {
-    // this.$store.dispatch("getProducts");
-    // this.$store.dispatch("getShoppingCart");
+    this.getProducts();
+    this.getShoppingCart();
+  },
+  computed: {
+    ...mapState(["products", "cart", "showMenu", "showCart"])
   },
   methods: {
     ...mapActions([
@@ -52,22 +55,16 @@ export default {
       "updateShoppingCart"
     ]),
     ...mapMutations(["toggleCart"]),
-    toggleShoppingCart() {
-      this.$store.commit("toggleCart");
-    },
     addItem(product) {
       let cartItem = this.cart.find(id => id.product_id === product.product_id);
       if (!cartItem) {
         product.quantity = 1;
-        this.$store.dispatch("addToShoppingCart", product);
+        this.addToShoppingCart(product);
       } else {
         cartItem.quantity += 1;
-        this.$store.dispatch("updateShoppingCart", cartItem);
+        this.updateShoppingCart(cartItem);
       }
     }
-  },
-  computed: {
-    ...mapState(["products", "cart", "showMenu", "showCart"])
   }
 };
 </script>
@@ -100,6 +97,7 @@ export default {
 }
 
 .add_btn {
+  transition: ease-out 0.2s;
   margin-right: 1rem;
   display: flex;
   justify-content: center;

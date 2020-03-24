@@ -11,7 +11,7 @@
         ETA
         <span>{{ activeOrder.eta }}</span>
       </p>
-      <button @click="toOrderHistory">Ok, cool!</button>
+      <button @click="$router.push('/profile')">Ok, cool!</button>
     </section>
   </section>
 </template>
@@ -20,13 +20,7 @@
 import { mapState } from "vuex";
 export default {
   name: "status",
-  methods: {
-    // ...mapMutations(["clearActiveOrder"]),
-    toOrderHistory() {
-      this.$router.push("/profile");
-      // this.$store.commit("clearActiveOrder");
-    }
-  },
+  methods: {},
   computed: {
     ...mapState(["activeOrder"])
   }

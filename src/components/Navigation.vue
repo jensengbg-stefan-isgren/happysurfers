@@ -23,21 +23,21 @@ export default {
   methods: {
     ...mapMutations(["showMenu"]),
     toMenu() {
-      this.$store.commit("showMenu");
+      this.showMenu();
       const path = `/menu`;
       if (this.$route.path !== path) this.$router.push("/menu");
     },
     toAbout() {
-      this.$store.commit("showMenu");
+      this.showMenu();
       const path = `/about`;
       if (this.$route.path !== path) this.$router.push("/about");
     },
     toStatus() {
-      this.$store.commit("showMenu");
+      this.showMenu();
       this.$router.push("/status");
     },
     toProfile() {
-      this.$store.commit("showMenu");
+      this.showMenu();
       const path = `/profile`;
       if (this.$route.path !== path) this.$router.push("/profile");
     }

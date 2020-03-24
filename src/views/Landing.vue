@@ -1,17 +1,12 @@
 <template>
-  <section class="landing" @click="toMenu">
+  <section class="landing" @click="$router.push('/menu')">
     <img src="../assets/graphics/airbean-landing.svg" alt />
   </section>
 </template>
 
 <script>
 export default {
-  name: "landing",
-  methods: {
-    toMenu() {
-      this.$router.push("/menu");
-    }
-  }
+  name: "landing"
 };
 </script>
 

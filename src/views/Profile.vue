@@ -12,9 +12,7 @@
       <h1 class="old_orders">Orderhistorik</h1>
       <ul>
         <li class="orders" v-for="(item, index) in orderHistory" :key="index">
-          <p @click="orderInfo(item, index)" class="order_nr">
-            #{{ item.orderNumber }}
-          </p>
+          <p class="order_nr">#{{ item.orderNumber }}</p>
           <p class="date">{{ item.timestamp }}</p>
           <p class="sum">total ordersumma</p>
           <p class="total_price">{{ item.totalValue }} kr</p>
@@ -30,17 +28,19 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from "vuex";
+import Login from "@/components/Login";
 import MenuIcon from "@/components/MenuIcon";
 import Navigation from "@/components/Navigation";
-import Login from "@/components/Login";
+
 export default {
   created() {
-    // this.$store.dispatch("getOrderHistory");
+    this.getOrderHistory();
+    this.getUser();
   },
   components: {
+    Login,
     MenuIcon,
-    Navigation,
-    Login
+    Navigation
   },
   computed: {
     ...mapGetters(["totalPriceHistory"]),
@@ -54,10 +54,7 @@ export default {
     ])
   },
   methods: {
-    orderInfo(item, index) {
-      console.log(item, index);
-    },
-    ...mapActions(["getOrderHistory"])
+    ...mapActions(["getOrderHistory", "getUser"])
   }
 };
 </script>

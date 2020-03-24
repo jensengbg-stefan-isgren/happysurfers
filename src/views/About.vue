@@ -39,8 +39,9 @@
 
 <script>
 import { mapState } from "vuex";
-import Navigation from "@/components/Navigation";
 import MenuIcon from "@/components/MenuIcon";
+import Navigation from "@/components/Navigation";
+
 export default {
   components: {
     MenuIcon,

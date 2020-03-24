@@ -3,9 +3,7 @@
     <LoadingSpinner v-if="loading" class="spinner" />
     <section class="cartCard">
       <h1 class="primary">Din beställning</h1>
-      <button @click="clearCart(cart)" v-if="cart != 0" class="remove_cart_btn">
-        Töm varukorgen
-      </button>
+      <button @click="clearCart(cart)" v-if="cart != 0" class="remove_cart_btn">Töm varukorgen</button>
       <EmptyCart v-if="cart <= 0" class="empty_cart" />
       <li v-for="(item, index) in cart" :key="index" class="orders">
         <div class="coffe">
@@ -15,12 +13,7 @@
         </div>
         <p class="price">{{ item.price * item.quantity }}kr</p>
         <div class="amount">
-          <img
-            @click="addQuantity(item)"
-            class="arrow"
-            src="../assets/graphics/arrow-up.svg"
-            alt
-          />
+          <img @click="addQuantity(item)" class="arrow" src="../assets/graphics/arrow-up.svg" alt />
           <p>{{ item.quantity }}</p>
           <img
             @click="removeQuantity(item)"
@@ -42,18 +35,16 @@
           @click="toStatus(cart)"
           class="orderButton"
           :disabled="cart <= 0"
-        >
-          Take my money!
-        </button>
+        >Take my money!</button>
       </div>
     </section>
   </section>
 </template>
 
 <script>
-import { mapActions, mapState, mapGetters, mapMutations } from "vuex";
-import LoadingSpinner from "@/components/LoadingSpinner";
 import EmptyCart from "@/components/EmptyCart";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import { mapActions, mapState, mapGetters, mapMutations } from "vuex";
 export default {
   name: "Cart",
   data() {
@@ -61,66 +52,65 @@ export default {
       loading: false
     };
   },
+  created() {
+    this.getUser();
+  },
   computed: {
     ...mapState(["cart", "showCart", "user"]),
-    ...mapGetters(["totalPrice"]),
-    cart() {
-      return this.$store.state.cart;
-    }
+    ...mapGetters(["totalPrice"])
   },
   components: {
     EmptyCart,
     LoadingSpinner
   },
-  created() {
-    // this.$store.dispatch("getShoppingCart");
-  },
   methods: {
-    ...mapMutations(["countDown"]),
+    ...mapMutations(["countDown", "clearCart", "toggleCart"]),
     ...mapActions([
+      "getUser",
+      "sendOrder",
+      "saveOrder",
       "getShoppingCart",
-      "updateShoppingCart",
-      "removeFromShoppingCart",
       "clearShoppingCart",
-      "saveOrder"
+      "updateShoppingCart",
+      "removeFromShoppingCart"
     ]),
     toStatus(cart) {
       let order = {
         items: cart,
         uuid: this.user[0].uuid
       };
-      console.log(order)
+      console.log(order);
       let promise = new Promise(resolve => {
         let orderButton = document.querySelector(".orderButton");
         orderButton.innerHTML = "Skickar beställning";
         this.loading = true;
-        resolve(this.$store.dispatch("sendOrder", order));
+        resolve(this.sendOrder(order));
       });
 
       promise.then(() => {
         this.loading = false;
-        this.$store.commit("countDown");
-        this.$store.commit("clearCart");
-        this.$store.commit("toggleCart");
+        this.countDown();
+        this.clearCart();
+        this.toggleCart();
         this.$router.push("/status");
       });
     },
     addQuantity(item) {
       let cartItem = this.cart.find(id => id.product_id === item.product_id);
       cartItem.quantity++;
-      this.$store.dispatch("updateShoppingCart", cartItem);
+      this.updateShoppingCart(cartItem);
     },
     removeQuantity(item) {
       let cartItem = this.cart.find(id => id.product_id === item.product_id);
       if (cartItem.quantity == 1) {
-        this.$store.dispatch("removeFromShoppingCart", cartItem);
+        this.removeFromShoppingCart(cartItem);
       } else {
         cartItem.quantity--;
-        this.$store.dispatch("updateShoppingCart", cartItem);
+        this.updateShoppingCart(cartItem);
       }
     },
     clearCart(cart) {
-      this.$store.dispatch("clearShoppingCart", cart);
+      this.clearShoppingCart(cart);
     }
   }
 };
@@ -270,6 +260,10 @@ h3 {
   top: 50%;
   left: 50%;
   z-index: 100;
+}
+
+.arrow {
+  transition: ease-out 0.2s;
 }
 
 .arrow:active {

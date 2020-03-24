@@ -3,9 +3,7 @@
     <section class="overlay">
       <div class="text">
         <h1>Välkommen till AirBean-familjen!</h1>
-        <p>
-          Genom att skapa ett konto nedan kan du spara och se din orderhistorik.
-        </p>
+        <p>Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</p>
       </div>
       <div class="inputs">
         <label for="name-input" class="labels">Namn</label>
@@ -20,10 +18,8 @@
       <button
         :class="(!checked ? 'orderButtonEmpty' : 'orderButton')"
         :disabled="!checked"
-        @click="createUser"
-      >
-        Brew me a cup!
-      </button>
+        @click="createUser(userData)"
+      >Brew me a cup!</button>
     </section>
   </section>
 </template>
@@ -41,10 +37,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["createUser"]),
-    createUser() {
-      this.$store.dispatch("createUser", this.userData);
-    }
+    ...mapActions(["createUser"])
   }
 };
 </script>
@@ -129,7 +122,8 @@ export default {
   margin-right: 0.5rem;
   background: transparent;
 }
-.orderButton, .orderButtonEmpty {
+.orderButton,
+.orderButtonEmpty {
   align-self: center;
 }
 </style>
