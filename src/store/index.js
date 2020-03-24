@@ -26,6 +26,24 @@ export default new Vuex.Store({
 
     sendOrder(state, order) {
       state.activeOrder = order;
+
+      this.commit("countDown");
+    },
+    countDown(state) {
+      let duration = state.activeOrder.eta * 60;
+      var timer = duration,
+        minutes,
+        seconds;
+      setInterval(() => {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        state.activeOrder.eta = minutes + ":" + seconds;
+        if (--timer < 0) {
+          timer = duration;
+        }
+      }, 1000);
     },
     clearCart(state) {
       state.cart = [];
@@ -185,6 +203,7 @@ export default new Vuex.Store({
         let response = await fetch(URL, options);
         let data = await response.json();
         context.commit("addToHistory", data);
+        context.commit("sendOrder", data);
       } catch (error) {
         console.log("CANT ADD TO HISTORY", error);
       }
@@ -202,6 +221,14 @@ export default new Vuex.Store({
     totalPrice(state) {
       let items = state.cart.map(item => {
         return item.quantity * item.price;
+      });
+      return items.reduce(function(prev, current) {
+        return prev + current;
+      }, 0);
+    },
+    totalPriceHistory(state) {
+      let items = state.orderHistory.map(item => {
+        return item.totalValue;
       });
       return items.reduce(function(prev, current) {
         return prev + current;

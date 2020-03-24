@@ -3,7 +3,7 @@
     <section class="status">
       <p class="orderNr">
         Ordernummer
-        <span>{{ activeOrder.orderNr }}</span>
+        <span>#{{ activeOrder.orderNumber }}</span>
       </p>
       <img src="../assets/graphics/drone.svg" alt />
       <h1>Din beställning är påväg!</h1>
@@ -17,16 +17,14 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "status",
   methods: {
-    ...mapMutations(["clearActiveOrder"]),
+    // ...mapMutations(["clearActiveOrder"]),
     toOrderHistory() {
-
       this.$router.push("/profile");
-      this.$store.commit("clearActiveOrder");
-
+      // this.$store.commit("clearActiveOrder");
     }
   },
   computed: {
