@@ -1,7 +1,11 @@
+const MUUID = require("uuid-mongodb");
 const mongoose = require("mongoose");
 mongoose.pluralize(null);
 const historySchema = require("../model/historyModel");
 const orderHistory = mongoose.model("orderhistory", historySchema);
+
+const mUUID4 = MUUID.v4();
+console.log(mUUID4.toString());
 
 let dateFormat = () => {
   let today = new Date();
@@ -51,14 +55,33 @@ exports.saveOrder = async (request, response) => {
 
 exports.sendOrder = async (request, response) => {
   let orderedItems = request.body;
-  const order = {
-    date: dateFormat(),
-    eta: timeToDelivery(),
-    orderNr: generateOrderNr(),
-    orderItems: orderedItems
-  };
+  let priceArray = orderedItems.map(item => item.price * item.quantity);
+  let totalPrice = priceArray.reduce((acc, curr) => acc + curr);
+  let obj = new orderHistory({
+    timestamp: dateFormat(),
+    orderNumber: generateOrderNr(),
+    items: request.body,
+    totalValue: totalPrice,
+    eta: 1
+  });
+
+  obj
+    .save()
+    .then(doc => {
+      // console.log(doc);
+    })
+    .catch(error => {
+      // console.log(error);
+    });
+
+  // const order = {
+  //   date: dateFormat(),
+  //   eta: timeToDelivery(),
+  //   orderNr: generateOrderNr(),
+  //   orderItems: orderedItems
+  // };
 
   setTimeout(() => {
-    response.send(order);
+    response.send(obj);
   }, 2000);
 };

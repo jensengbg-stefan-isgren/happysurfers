@@ -9,13 +9,24 @@
     </div>
     <section class="history">
       <h1 class="old_orders">Orderhistorik</h1>
-      <div></div>
+      <ul>
+        <li class="orders" v-for="(item, index) in orderHistory" :key="index">
+          <p @click="orderInfo(item,index)" class="order_nr">#{{item.orderNumber}}</p>
+          <p class="date">{{item.timestamp}}</p>
+          <p class="sum">total ordersumma</p>
+          <p class="total_price">{{item.totalValue}} kr</p>
+        </li>
+      </ul>
+      <div class="total">
+        <h5 class="total_spent">Totalt spenderat</h5>
+        <p class="total_pr">{{totalPriceHistory}} kr</p>
+      </div>
     </section>
   </section>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 import MenuIcon from "@/components/MenuIcon";
 import Navigation from "@/components/Navigation";
 export default {
@@ -27,15 +38,89 @@ export default {
     Navigation
   },
   computed: {
-    ...mapState(["products", "cart", "showMenu", "showCart"])
+    ...mapGetters(["totalPriceHistory"]),
+    ...mapState(["products", "cart", "showMenu", "showCart", "orderHistory"])
   },
   methods: {
+    orderInfo(item, index) {
+      console.log(item, index);
+    },
     ...mapActions(["getOrderHistory"])
   }
 };
 </script>
 
 <style lang="scss" scoped>
+li {
+  margin-bottom: 10px;
+}
+
+.total_spent {
+  font-family: $body;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.total_pr {
+  font-family: $body;
+  font-size: 0.9rem;
+  font-weight: bold;
+  justify-self: end;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.orders {
+  margin-left: 1.8rem;
+  margin-right: 1.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.total {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-left: 1.8rem;
+  margin-right: 1.8rem;
+}
+
+.total_price,
+.date {
+  justify-self: end;
+}
+
+.order_nr,
+.sum {
+  justify-self: start;
+}
+
+.order_nr {
+  cursor: pointer;
+  font-family: $body;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.date {
+  font-size: 0.9rem;
+  font-family: $body;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sum {
+  font-size: 0.75rem;
+  font-family: $body;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.total_price {
+  font-size: 0.75rem;
+  font-family: $body;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .order_history {
   position: relative;
   background: url(../assets/graphics/graphics-header.svg) center top no-repeat;
@@ -74,10 +159,11 @@ export default {
 }
 
 .history {
-  align-self: flex-start;
-  margin-left: 2rem;
+  width: 100%;
 }
 .old_orders {
+  margin-left: 1.8rem;
+  margin-bottom: 1rem;
   font-size: 1.4rem;
   font-family: $header;
   font-weight: 900;
@@ -91,5 +177,9 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+li {
+  list-style: none;
 }
 </style>
