@@ -41,8 +41,8 @@ export default {
     Cart
   },
   created() {
-    this.$store.dispatch("getProducts");
-    this.$store.dispatch("getShoppingCart");
+    // this.$store.dispatch("getProducts");
+    // this.$store.dispatch("getShoppingCart");
   },
   methods: {
     ...mapActions([
