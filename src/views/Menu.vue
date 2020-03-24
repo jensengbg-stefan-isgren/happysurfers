@@ -85,7 +85,7 @@ export default {
   border-right: 15px solid transparent;
   border-bottom: 20px solid white;
   border-radius: 2px;
-  z-index: 100;
+  z-index: 10;
 }
 .product_info {
   font-family: $body;
@@ -108,6 +108,10 @@ export default {
   border-radius: 50%;
   height: 2rem;
   width: 2rem;
+}
+
+.add_btn:active {
+  transform: scale(1.2);
 }
 
 img {

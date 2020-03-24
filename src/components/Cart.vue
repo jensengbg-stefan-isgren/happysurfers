@@ -1,7 +1,7 @@
 <template>
   <section class="bg_section">
+    <LoadingSpinner v-if="loading" class="spinner" />
     <section class="cartCard">
-      <LoadingSpinner v-if="loading" class="spinner" />
       <h1 class="primary">Din beställning</h1>
       <button @click="clearCart(cart)" v-if="cart != 0" class="remove_cart_btn">Töm varukorgen</button>
       <EmptyCart v-if="cart <= 0" class="empty_cart" />
@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     ...mapState(["cart", "showCart"]),
-    ...mapGetters(["totalPrice", "itemPrice"]),
+    ...mapGetters(["totalPrice"]),
     cart() {
       return this.$store.state.cart;
     }
@@ -117,38 +117,6 @@ export default {
   position: absolute;
   right: 1rem;
   top: 1rem;
-}
-
-.saving {
-  font-size: 40px;
-}
-
-.saving span {
-  font-size: 50px;
-  animation-name: blink;
-  animation-duration: 1.4s;
-  animation-iteration-count: infinite;
-  animation-fill-mode: both;
-}
-
-.saving span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.saving span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes blink {
-  0% {
-    opacity: 0.2;
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.2;
-  }
 }
 
 .bg_section {
@@ -277,6 +245,20 @@ h3 {
 }
 
 .spinner {
+  background: rgba(0, 0, 0, 0.822);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 375px;
+  top: 50%;
+  left: 50%;
   z-index: 100;
+}
+
+.arrow:active {
+  transform: scale(1.5);
 }
 </style>
