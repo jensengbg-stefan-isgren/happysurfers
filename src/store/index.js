@@ -207,6 +207,40 @@ export default new Vuex.Store({
       } catch (error) {
         console.log("CANT ADD TO HISTORY", error);
       }
+    },
+    async createUser(context, user) {
+      const URL = "http://localhost:5000/user";
+      let options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+      };
+      try {
+        let response = await fetch(URL, options);
+        let data = await response.json();
+        return data;
+      } catch (error) {
+        console.log("CANT ADD TO USER", error);
+      }
+    },
+    async getUser(context, user) {
+      const URL = "http://localhost:5000/user/";
+      let options = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+      };
+      try {
+        let response = await fetch(URL, options);
+        let data = await response.json();
+        return data;
+      } catch (error) {
+        console.log("CANT ADD TO USER", error);
+      }
     }
   },
   getters: {

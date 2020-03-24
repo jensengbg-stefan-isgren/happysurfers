@@ -1,3 +1,4 @@
+const MUUID = require("uuid-mongodb");
 const mongoose = require("mongoose");
 const productSchema = require("../model/productModel");
 const product = mongoose.model("products", productSchema);
@@ -26,6 +27,8 @@ exports.getProducts = async (request, response) => {
     console.log("CANT FIND IN DATABASE", error);
   }
 };
+
+// exports.getKey = async (request, response) => {};
 
 // exports.sendOrder = async (request, response) => {
 //   let orderedItems = request.body;
