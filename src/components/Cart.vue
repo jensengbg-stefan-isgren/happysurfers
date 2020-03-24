@@ -3,7 +3,9 @@
     <section class="cartCard">
       <LoadingSpinner v-if="loading" class="spinner" />
       <h1 class="primary">Din beställning</h1>
-      <button @click="clearCart(cart)" v-if="cart != 0" class="remove_cart_btn">Töm varukorgen</button>
+      <button @click="clearCart(cart)" v-if="cart != 0" class="remove_cart_btn">
+        Töm varukorgen
+      </button>
       <EmptyCart v-if="cart <= 0" class="empty_cart" />
       <li v-for="(item, index) in cart" :key="index" class="orders">
         <div class="coffe">
@@ -13,7 +15,12 @@
         </div>
         <p class="price">{{ item.price * item.quantity }}kr</p>
         <div class="amount">
-          <img @click="addQuantity(item)" class="arrow" src="../assets/graphics/arrow-up.svg" alt />
+          <img
+            @click="addQuantity(item)"
+            class="arrow"
+            src="../assets/graphics/arrow-up.svg"
+            alt
+          />
           <p>{{ item.quantity }}</p>
           <img
             @click="removeQuantity(item)"
@@ -35,7 +42,9 @@
           @click="toStatus(cart)"
           class="orderButton"
           :disabled="cart <= 0"
-        >Take my money!</button>
+        >
+          Take my money!
+        </button>
       </div>
     </section>
   </section>
@@ -53,7 +62,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["cart", "showCart"]),
+    ...mapState(["cart", "showCart", "user"]),
     ...mapGetters(["totalPrice", "itemPrice"]),
     cart() {
       return this.$store.state.cart;
@@ -64,7 +73,7 @@ export default {
     LoadingSpinner
   },
   created() {
-    this.$store.dispatch("getShoppingCart");
+    // this.$store.dispatch("getShoppingCart");
   },
   methods: {
     ...mapMutations(["countDown"]),
@@ -76,11 +85,16 @@ export default {
       "saveOrder"
     ]),
     toStatus(cart) {
+      let order = {
+        items: cart,
+        uuid: this.user[0].uuid
+      };
+      console.log(order)
       let promise = new Promise(resolve => {
         let orderButton = document.querySelector(".orderButton");
         orderButton.innerHTML = "Skickar beställning";
         this.loading = true;
-        resolve(this.$store.dispatch("saveOrder", cart));
+        resolve(this.$store.dispatch("sendOrder", order));
       });
 
       promise.then(() => {

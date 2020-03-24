@@ -6,4 +6,6 @@ router
   .route("/")
   .post(userController.createUser)
   .get(userController.getUser);
+
+router.route("/:id").get(userController.getUserOrderHistory);
 module.exports = router;

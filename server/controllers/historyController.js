@@ -1,9 +1,7 @@
-
 const mongoose = require("mongoose");
 mongoose.pluralize(null);
 const historySchema = require("../model/historyModel");
 const orderHistory = mongoose.model("orderhistory", historySchema);
-
 
 let dateFormat = () => {
   let today = new Date();
@@ -46,13 +44,8 @@ exports.showOrderHistory = async (request, response) => {
   response.send(history);
 };
 
-exports.saveOrder = async (request, response) => {
-  console.log(request.body);
-  response.send(request.body);
-};
-
 exports.sendOrder = async (request, response) => {
-  let orderedItems = request.body;
+  let orderedItems = request.body.items;
   let priceArray = orderedItems.map(item => item.price * item.quantity);
   let totalPrice = priceArray.reduce((acc, curr) => acc + curr);
   let obj = new orderHistory({
@@ -60,6 +53,7 @@ exports.sendOrder = async (request, response) => {
     orderNumber: generateOrderNr(),
     items: request.body,
     totalValue: totalPrice,
+    uuid: request.body.uuid,
     eta: 1
   });
 

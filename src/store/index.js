@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    user: {},
     products: [],
     cart: [],
     orderHistory: [],
@@ -13,14 +14,15 @@ export default new Vuex.Store({
     showCart: false
   },
   mutations: {
+    getUser(state, user) {
+      state.user = user;
+    },
     clearActiveOrder(state) {
       state.activeOrder = {};
     },
-    addToHistory(state, order) {
-      console.log(state, order);
-    },
+    addToHistory() {},
 
-    orderHistory(state, orderedItems) {
+    getOrderHistory(state, orderedItems) {
       state.orderHistory = orderedItems;
     },
 
@@ -48,13 +50,13 @@ export default new Vuex.Store({
     clearCart(state) {
       state.cart = [];
     },
-    addProducts(state, products) {
+    getProducts(state, products) {
       state.products = products;
     },
     addToCart(state, product) {
       state.cart.push(product);
     },
-    showShoppingCart(state, cartItems) {
+    getShoppingCart(state, cartItems) {
       state.cart = cartItems;
     },
     showMenu(state) {
@@ -78,7 +80,7 @@ export default new Vuex.Store({
       try {
         let response = await fetch(URL, { method: "GET" });
         let data = await response.json();
-        context.commit("addProducts", data);
+        context.commit("getProducts", data);
       } catch (error) {
         console.log("ERROR: trying to fetch data", error);
       }
@@ -106,7 +108,7 @@ export default new Vuex.Store({
       try {
         let response = await fetch(URL, { method: "GET" });
         let data = await response.json();
-        context.commit("showShoppingCart", data);
+        context.commit("getShoppingCart", data);
       } catch (error) {
         console.log("CANT GET SHOPPINGCART:", error);
       }
@@ -184,12 +186,12 @@ export default new Vuex.Store({
       try {
         let response = await fetch(URL, { method: "GET" });
         let data = await response.json();
-        context.commit("orderHistory", data);
+        context.commit("getOrderHistory", data);
       } catch (error) {
         console.log("CANT GET ORDERHISTORY:", error);
       }
     },
-    async saveOrder(context, order) {
+    async sendOrder(context, order) {
       const URL = "http://localhost:5000/orderhistory";
       let options = {
         method: "POST",
@@ -237,7 +239,7 @@ export default new Vuex.Store({
       try {
         let response = await fetch(URL, options);
         let data = await response.json();
-        return data;
+        context.commit("getUser", data);
       } catch (error) {
         console.log("CANT ADD TO USER", error);
       }
