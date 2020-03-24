@@ -1,65 +1,65 @@
 .orderButton {
-  grid-area: orderButton;
-  width: 15.5rem;
-  height: 3.5rem;
-  justify-self: center;
-  font-size: 1.5rem;
-  color: white;
-  background: $brown;
-  border-radius: 3.1rem;
-  font-weight: 900;
-  font-family: $header;
-  border: none;
-  outline: none;
+    grid-area: orderButton;
+    width: 15.5rem;
+    height: 3.5rem;
+    justify-self: center;
+    font-size: 1.5rem;
+    color: white;
+    background: $brown;
+    border-radius: 3.1rem;
+    font-weight: 900;
+    font-family: $header;
+    border: none;
+    outline: none;
 }
 
 .remove_cart_btn {
-  transform: translateY(-0.5rem);
-  margin: 0 auto;
-  width: 7.5rem;
-  height: 1.5rem;
-  justify-self: center;
-  font-size: 0.7rem;
-  color: white;
-  background: $orange;
-  border-radius: 3.1rem;
-  font-weight: 900;
-  font-family: $header;
-  border: none;
-  outline: none;
+    transform: translateY(-0.5rem);
+    margin: 0 auto;
+    width: 7.5rem;
+    height: 1.5rem;
+    justify-self: center;
+    font-size: 0.7rem;
+    color: white;
+    background: $orange;
+    border-radius: 3.1rem;
+    font-weight: 900;
+    font-family: $header;
+    border: none;
+    outline: none;
 }
 
 .order_button {
-  margin: auto;
-  width: 7.5rem;
-  height: 2.8rem;
-  justify-self: center;
-  font-size: 1.5rem;
-  color: white;
-  background: $light-green;
-  border-radius: 3.1rem;
-  font-weight: 900;
-  font-family: $header;
-  border: none;
-  outline: none;
+    margin: auto;
+    width: 7.5rem;
+    height: 2.8rem;
+    justify-self: center;
+    font-size: 1.5rem;
+    color: white;
+    background: $light-green;
+    border-radius: 3.1rem;
+    font-weight: 900;
+    font-family: $header;
+    border: none;
+    outline: none;
 }
 
 .menu_icon {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
 }
 
 .orderButtonEmpty {
-  background-color: $orange;
-  width: 15.5rem;
-  height: 3.5rem;
-  justify-self: center;
-  font-size: 1.5rem;
-  color: white;
-  border-radius: 3.1rem;
-  font-weight: 900;
-  font-family: $header;
-  border: none;
-  outline: none;
+    background-color: $orange;
+    width: 15.5rem;
+    height: 3.5rem;
+    justify-self: center;
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 3.1rem;
+    font-weight: 900;
+    font-family: $header;
+    border: none;
+    outline: none;
 }
