@@ -45,7 +45,8 @@ exports.showOrderHistory = async (request, response) => {
 };
 
 exports.sendOrder = async (request, response) => {
-  let orderedItems = request.body.items;
+  console.log(request.body);
+  let orderedItems = request.body;
   let priceArray = orderedItems.map(item => item.price * item.quantity);
   let totalPrice = priceArray.reduce((acc, curr) => acc + curr);
   let obj = new orderHistory({
@@ -54,7 +55,7 @@ exports.sendOrder = async (request, response) => {
     items: request.body,
     totalValue: totalPrice,
     uuid: request.body.uuid,
-    eta: 1
+    eta: timeToDelivery()
   });
 
   obj

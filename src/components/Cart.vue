@@ -75,16 +75,12 @@ export default {
       "removeFromShoppingCart"
     ]),
     toStatus(cart) {
-      let order = {
-        items: cart,
-        uuid: this.user.uuid
-      };
-      console.log(order);
+  
       let promise = new Promise(resolve => {
         let orderButton = document.querySelector(".orderButton");
         orderButton.innerHTML = "Skickar beställning";
         this.loading = true;
-        resolve(this.sendOrder(order));
+        resolve(this.sendOrder(cart));
       });
 
       promise.then(() => {

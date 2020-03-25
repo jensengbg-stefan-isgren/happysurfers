@@ -33,6 +33,6 @@ exports.getUser = async (request, response) => {
 };
 
 exports.getUserOrderHistory = async (request, response) => {
-  let his = await history.find({ uuid: request.params.id });
+  let his = await history.find({ uuid: request.params.uuid });
   response.send(his);
 };

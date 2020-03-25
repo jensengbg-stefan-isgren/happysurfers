@@ -7,5 +7,5 @@ router
   .post(userController.createUser)
   .get(userController.getUser);
 
-router.route("/:id").get(userController.getUserOrderHistory);
+router.route("/:uuid").get(userController.getUserOrderHistory);
 module.exports = router;

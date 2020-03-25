@@ -34,8 +34,8 @@ import Navigation from "@/components/Navigation";
 
 export default {
   created() {
-    this.getOrderHistory();
     this.getUser();
+    this.getOrderHistory();
   },
   components: {
     Login,
@@ -45,16 +45,16 @@ export default {
   computed: {
     ...mapGetters(["totalPriceHistory"]),
     ...mapState([
-      "products",
+      "user",
       "cart",
+      "products",
       "showMenu",
       "showCart",
-      "orderHistory",
-      "user"
+      "orderHistory"
     ])
   },
   methods: {
-    ...mapActions(["getOrderHistory", "getUser"])
+    ...mapActions(["getOrderHistory", "getUser", "getUserOrderHistory"])
   }
 };
 </script>
