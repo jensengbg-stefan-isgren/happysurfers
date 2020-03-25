@@ -28,11 +28,11 @@ exports.createUser = async (request, response) => {
 };
 
 exports.getUser = async (request, response) => {
-  let users = await User.find();
+  let users = await User.findOne();
   response.send(users);
 };
 
 exports.getUserOrderHistory = async (request, response) => {
-  let his = await history.find({uuid: request.params.id});
+  let his = await history.find({ uuid: request.params.id });
   response.send(his);
 };

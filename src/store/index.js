@@ -14,6 +14,9 @@ export default new Vuex.Store({
     showCart: false
   },
   mutations: {
+    addUser(state, user) {
+      state.user = user;
+    },
     getUser(state, user) {
       state.user = user;
     },
@@ -222,7 +225,7 @@ export default new Vuex.Store({
       try {
         let response = await fetch(URL, options);
         let data = await response.json();
-        return data;
+        context.commit("addUser", data);
       } catch (error) {
         console.log("CANT ADD TO USER", error);
       }
@@ -239,7 +242,7 @@ export default new Vuex.Store({
       try {
         let response = await fetch(URL, options);
         let data = await response.json();
-        context.commit("getUser", data);
+        return data;
       } catch (error) {
         console.log("CANT ADD TO USER", error);
       }

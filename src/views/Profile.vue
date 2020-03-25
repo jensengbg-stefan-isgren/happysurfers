@@ -2,11 +2,11 @@
   <section class="order_history">
     <MenuIcon class="menu_icon" />
     <Navigation class="navigation" v-if="showMenu" />
-    <Login v-if="user.length < 1" />
+    <Login v-if="Object.keys(user).length === 0" />
     <div class="profile">
       <img class="portrait" src="../assets/graphics/sixten.png" alt />
-      <h1 class="name">Sixten Kaffelövér</h1>
-      <p class="email">sixten.kaffelover@airbean.se</p>
+      <h1 class="name">{{user.name}}</h1>
+      <p class="email">{{user.email}}</p>
     </div>
     <section class="history">
       <h1 class="old_orders">Orderhistorik</h1>
