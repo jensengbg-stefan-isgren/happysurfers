@@ -242,7 +242,7 @@ export default new Vuex.Store({
       try {
         let response = await fetch(URL, options);
         let data = await response.json();
-        return data;
+        context.commit("getUser", data)
       } catch (error) {
         console.log("CANT ADD TO USER", error);
       }

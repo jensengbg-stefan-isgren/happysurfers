@@ -77,7 +77,7 @@ export default {
     toStatus(cart) {
       let order = {
         items: cart,
-        uuid: this.user[0].uuid
+        uuid: this.user.uuid
       };
       console.log(order);
       let promise = new Promise(resolve => {
