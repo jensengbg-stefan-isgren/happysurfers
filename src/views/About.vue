@@ -48,7 +48,9 @@ export default {
     Navigation
   },
   computed: {
-    ...mapState(["showMenu"])
+    ...mapState({
+      showMenu: state => state.menu.showMenu
+    })
   }
 };
 </script>
