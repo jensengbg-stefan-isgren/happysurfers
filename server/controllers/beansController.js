@@ -2,22 +2,8 @@ const MUUID = require("uuid-mongodb");
 const mongoose = require("mongoose");
 const productSchema = require("../model/productModel");
 const product = mongoose.model("products", productSchema);
-
-// let timeToDelivery = () => {
-//   let distance = Math.floor(Math.random() * 20) + 1;
-//   let droneSpeed = 80;
-
-//   let time = (distance / droneSpeed) * 60;
-//   time = Math.round(time);
-//   return time;
-// };
-
-// function generateOrderNr() {
-//   let letters = ["X", "Y", "Z"];
-//   return `AB${Date.now()}${
-//     letters[Math.floor(Math.random() * letters.length)]
-//   }`;
-// }
+const userSchema = require("../model/userModel");
+const User = mongoose.model("users", userSchema);
 
 exports.getProducts = async (request, response) => {
   try {
@@ -28,17 +14,26 @@ exports.getProducts = async (request, response) => {
   }
 };
 
-// exports.getKey = async (request, response) => {};
+exports.getKey = async (request, response) => {
+  //kolla om user finns om så skippa annars skapa användare!
+  if (await User.findOne({ name: "genericOrders" }).exec()) {
+    response.send("användaren finns redan");
+  } else {
+    const mUUID4 = MUUID.v4();
+    let user = new User({
+      name: "genericOrders",
+      email: "genericOrders@airbean.com",
+      uuid: mUUID4.toString()
+    });
+    user
+      .save()
+      .then(doc => {
+        // console.log(doc);
+      })
+      .catch(error => {
+        // console.log(error);
+      });
 
-// exports.sendOrder = async (request, response) => {
-//   let orderedItems = request.body;
-//   const order = {
-//     eta: timeToDelivery(),
-//     orderNr: generateOrderNr(),
-//     orderItems: orderedItems
-//   };
-
-//   setTimeout(() => {
-//     response.send(order);
-//   }, 2000);
-// };
+    response.end();
+  }
+};

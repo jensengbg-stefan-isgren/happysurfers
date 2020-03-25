@@ -54,9 +54,13 @@ export default {
   },
   created() {
     this.getUser();
+    this.getKey();
   },
   computed: {
-    ...mapState(["cart", "showCart", "user"]),
+    ...mapState({
+      cart: state => state.shoppingCart.cart,
+      user: state => state.user.user
+    }),
     ...mapGetters(["totalPrice"])
   },
   components: {
@@ -66,6 +70,7 @@ export default {
   methods: {
     ...mapMutations(["countDown", "clearCart", "toggleCart"]),
     ...mapActions([
+      "getKey",
       "getUser",
       "sendOrder",
       "saveOrder",
@@ -75,7 +80,6 @@ export default {
       "removeFromShoppingCart"
     ]),
     toStatus(cart) {
-  
       let promise = new Promise(resolve => {
         let orderButton = document.querySelector(".orderButton");
         orderButton.innerHTML = "Skickar beställning";

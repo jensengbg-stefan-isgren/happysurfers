@@ -45,7 +45,12 @@ export default {
     this.getShoppingCart();
   },
   computed: {
-    ...mapState(["products", "cart", "showMenu", "showCart"])
+    ...mapState({
+      products: state => state.products.products,
+      showCart: state => state.shoppingCart.showCart,
+      cart: state => state.shoppingCart.cart,
+      showMenu: state => state.menu.showMenu
+    })
   },
   methods: {
     ...mapActions([

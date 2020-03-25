@@ -44,14 +44,11 @@ export default {
   },
   computed: {
     ...mapGetters(["totalPriceHistory"]),
-    ...mapState([
-      "user",
-      "cart",
-      "products",
-      "showMenu",
-      "showCart",
-      "orderHistory"
-    ])
+    ...mapState({
+      showMenu: state => state.menu.showMenu,
+      user: state => state.user.user,
+      orderHistory: "orderHistory"
+    })
   },
   methods: {
     ...mapActions(["getOrderHistory", "getUser", "getUserOrderHistory"])
