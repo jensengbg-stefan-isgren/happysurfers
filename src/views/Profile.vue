@@ -8,10 +8,16 @@
       <h1 class="name">{{ user.name }}</h1>
       <p class="email">{{ user.email }}</p>
     </div>
+    <OrderHistory v-if="showReceipt" :receipt="receipt" @closeReceipt="closeReceipt" />
     <section class="history">
       <h1 class="old_orders">Orderhistorik</h1>
       <ul>
-        <li class="orders" v-for="(item, index) in orderHistory" :key="index">
+        <li
+          class="orders"
+          v-for="(item, index) in orderHistory"
+          :key="index"
+          @click="openReceipt(item)"
+        >
           <p class="order_nr">#{{ item.orderNumber }}</p>
           <p class="date">{{ item.timestamp }}</p>
           <p class="sum">total ordersumma</p>
@@ -31,8 +37,15 @@ import { mapState, mapActions, mapGetters } from "vuex";
 import Login from "@/components/Login";
 import MenuIcon from "@/components/MenuIcon";
 import Navigation from "@/components/Navigation";
+import OrderHistory from "@/components/OrderHistory";
 
 export default {
+  data() {
+    return {
+      showReceipt: false,
+      receipt: {}
+    };
+  },
   created() {
     let promise = new Promise(resolve => {
       resolve(this.getUser());
@@ -45,7 +58,8 @@ export default {
   components: {
     Login,
     MenuIcon,
-    Navigation
+    Navigation,
+    OrderHistory
   },
   computed: {
     ...mapGetters(["totalPriceHistory"]),
@@ -57,6 +71,17 @@ export default {
   },
   methods: {
     ...mapActions(["getUser", "getUserOrderHistory"])
+
+    ...mapActions(["getOrderHistory", "getUser", "getUserOrderHistory"]),
+
+    openReceipt(item) {
+      console.log(event);
+      this.receipt = item;
+      this.showReceipt = true;
+    },
+    closeReceipt() {
+      this.showReceipt = false;
+    }
   }
 };
 </script>
