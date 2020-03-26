@@ -2,8 +2,11 @@
   <section class="background">
     <section class="overlay">
       <div class="text">
+        <img class="logo" src="../assets/graphics/logo.svg" alt="" />
         <h1>Välkommen till AirBean-familjen!</h1>
-        <p>Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</p>
+        <p>
+          Genom att skapa ett konto nedan kan du spara och se din orderhistorik.
+        </p>
       </div>
       <div class="inputs">
         <label for="name-input" class="labels">Namn</label>
@@ -16,10 +19,12 @@
         </div>
       </div>
       <button
-        :class="(!checked ? 'orderButtonEmpty' : 'orderButton')"
+        :class="!checked ? 'orderButtonEmpty' : 'orderButton'"
         :disabled="!checked"
         @click="createUser(userData)"
-      >Brew me a cup!</button>
+      >
+        Brew me a cup!
+      </button>
     </section>
   </section>
 </template>
@@ -43,6 +48,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.logo {
+  height: 1.9rem;
+  width: 1.9rem;
+}
+
 .background {
   background: transparent;
 }

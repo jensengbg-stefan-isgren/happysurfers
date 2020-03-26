@@ -34,8 +34,13 @@ import Navigation from "@/components/Navigation";
 
 export default {
   created() {
-    this.getUser();
-    this.getOrderHistory();
+    let promise = new Promise(resolve => {
+      resolve(this.getUser());
+    });
+
+    promise.then(() => {
+      this.getUserOrderHistory(this.user.uuid);
+    });
   },
   components: {
     Login,
@@ -47,11 +52,11 @@ export default {
     ...mapState({
       showMenu: state => state.menu.showMenu,
       user: state => state.user.user,
-      orderHistory: "orderHistory"
+      orderHistory: state => state.user.orderHistory
     })
   },
   methods: {
-    ...mapActions(["getOrderHistory", "getUser", "getUserOrderHistory"])
+    ...mapActions(["getUser", "getUserOrderHistory"])
   }
 };
 </script>

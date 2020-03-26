@@ -8,7 +8,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    orderHistory: [],
     activeOrder: {}
   },
   mutations: {
@@ -73,16 +72,7 @@ export default new Vuex.Store({
       }
     }
   },
-  getters: {
-    totalPriceHistory(state) {
-      let items = state.orderHistory.map(item => {
-        return item.totalValue;
-      });
-      return items.reduce(function(prev, current) {
-        return prev + current;
-      }, 0);
-    }
-  },
+  getters: {},
   modules: {
     user,
     products,

@@ -11,6 +11,10 @@
       <h1 @click="toStatus">Orderstatus</h1>
       <hr />
       <h1 @click="toProfile">Profil</h1>
+      <hr />
+      <h1 @click="toDiscountCard">Stämpelkort</h1>
+      <hr />
+      <h1 @click="toFreeCoupons">Gratiskuponger</h1>
     </nav>
   </section>
 </template>
@@ -40,6 +44,16 @@ export default {
       this.showMenu();
       const path = `/profile`;
       if (this.$route.path !== path) this.$router.push("/profile");
+    },
+    toDiscountCard() {
+      this.showMenu();
+      const path = `/discountcard`;
+      if (this.$route.path !== path) this.$router.push("/discountcard");
+    },
+    toFreeCoupons() {
+      this.showMenu();
+      const path = `/freecoupons`;
+      if (this.$route.path !== path) this.$router.push("/freecoupons");
     }
   }
 };

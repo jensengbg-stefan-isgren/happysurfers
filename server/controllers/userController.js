@@ -28,7 +28,7 @@ exports.createUser = async (request, response) => {
 };
 
 exports.getUser = async (request, response) => {
-  let users = await User.findOne( { name: { $ne: "genericOrders" } } )
+  let users = await User.findOne({ name: { $ne: "genericOrders" } });
   response.send(users);
 };
 
