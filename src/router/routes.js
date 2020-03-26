@@ -2,6 +2,8 @@ import Landing from "@/views/Landing";
 import About from "@/views/About";
 import Menu from "@/views/Menu";
 import Profile from "@/views/Profile";
+import DiscountCard from "@/views/DiscountCard";
+import FreeCoupons from "@/views/FreeCoupons";
 
 import Status from "@/views/Status";
 import Nav from "@/components/Navigation";
@@ -37,5 +39,15 @@ export default [
     path: "/profile/",
     name: "Profile",
     component: Profile
+  },
+  {
+    path: "/discountcard",
+    name: "DiscountCard",
+    component: DiscountCard
+  },
+  {
+    path: "/freecoupons",
+    name: "FreeCoupons",
+    component: FreeCoupons
   }
 ];

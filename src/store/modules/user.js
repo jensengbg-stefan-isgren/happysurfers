@@ -1,7 +1,8 @@
 export default {
   state: {
     user: {},
-    genericAccount: {}
+    genericAccount: {},
+    orderHistory: []
   },
   mutations: {
     addUser(state, user) {
@@ -12,6 +13,9 @@ export default {
     },
     genericAccount(state, order) {
       state.genericAccount = order;
+    },
+    addUserOrderHistory(state, data) {
+      state.orderHistory = data;
     }
   },
   actions: {
@@ -65,6 +69,33 @@ export default {
       } catch (error) {
         console.log("CANT ADD TO USER", error);
       }
+    },
+    async getUserOrderHistory({ commit }, user) {
+      const URL = `http://localhost:5000/user/${user}`;
+      let options = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
+      try {
+        let response = await fetch(URL, options);
+        let data = await response.json();
+        console.log(data);
+        commit("addUserOrderHistory", data);
+      } catch (error) {
+        console.log("CANT ADD TO USER", error);
+      }
+    }
+  },
+  getters: {
+    totalPriceHistory(state) {
+      let items = state.orderHistory.map(item => {
+        return item.totalValue;
+      });
+      return items.reduce(function(prev, current) {
+        return prev + current;
+      }, 0);
     }
   }
 };

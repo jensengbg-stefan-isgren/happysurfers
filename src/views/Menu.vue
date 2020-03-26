@@ -16,11 +16,11 @@
         <img class="add_sign" src="../assets/graphics/add.svg" alt />
       </div>
       <div>
-        <h5 class="product_title">{{product.title}}</h5>
+        <h5 class="product_title">{{ product.title }}</h5>
         <div class="dots"></div>
-        <p class="product_info">{{product.desc}}</p>
+        <p class="product_info">{{ product.desc }}</p>
       </div>
-      <p class="product_price">{{product.price}} Kr</p>
+      <p class="product_price">{{ product.price }} Kr</p>
     </div>
   </section>
 </template>
@@ -44,7 +44,6 @@ export default {
     this.getProducts();
     this.getShoppingCart();
     this.getKey();
-    this.checkIfUserExist();
   },
   computed: {
     ...mapState({
@@ -73,13 +72,6 @@ export default {
       } else {
         cartItem.quantity += 1;
         this.updateShoppingCart(cartItem);
-      }
-    },
-    checkIfUserExist() {
-      if (!Object.keys(this.user).length === 0) {
-           this.getUser();
-      } else { 
-        return;
       }
     }
   }
