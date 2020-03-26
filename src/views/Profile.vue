@@ -5,8 +5,8 @@
     <Login v-if="Object.keys(user).length === 0" />
     <div class="profile">
       <img class="portrait" src="../assets/graphics/sixten.png" alt />
-      <h1 class="name">{{user.name}}</h1>
-      <p class="email">{{user.email}}</p>
+      <h1 class="name">{{ user.name }}</h1>
+      <p class="email">{{ user.email }}</p>
     </div>
     <section class="history">
       <h1 class="old_orders">Orderhistorik</h1>
@@ -34,7 +34,7 @@ import Navigation from "@/components/Navigation";
 
 export default {
   created() {
-    this.checkIfUserExist();
+    this.getUser();
     this.getOrderHistory();
   },
   components: {
@@ -51,14 +51,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["getOrderHistory", "getUser", "getUserOrderHistory"]),
-    checkIfUserExist() {
-      if (!Object.keys(this.user).length === 0) {
-        this.getUser();
-      } else {
-        return;
-      }
-    }
+    ...mapActions(["getOrderHistory", "getUser", "getUserOrderHistory"])
   }
 };
 </script>
