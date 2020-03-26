@@ -15,9 +15,9 @@ exports.getProducts = async (request, response) => {
 };
 
 exports.getKey = async (request, response) => {
-  //kolla om user finns om så skippa annars skapa användare!
-  if (await User.findOne({ name: "genericOrders" }).exec()) {
-    response.send("användaren finns redan");
+  let user = await User.findOne({ name: "genericOrders" }).exec();
+  if (user) {
+    response.send(user);
   } else {
     const mUUID4 = MUUID.v4();
     let user = new User({
@@ -34,6 +34,6 @@ exports.getKey = async (request, response) => {
         // console.log(error);
       });
 
-    response.end();
+    response.send(user);
   }
 };

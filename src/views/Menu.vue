@@ -43,17 +43,22 @@ export default {
   created() {
     this.getProducts();
     this.getShoppingCart();
+    this.getKey();
+    this.checkIfUserExist();
   },
   computed: {
     ...mapState({
       products: state => state.products.products,
       showCart: state => state.shoppingCart.showCart,
       cart: state => state.shoppingCart.cart,
-      showMenu: state => state.menu.showMenu
+      showMenu: state => state.menu.showMenu,
+      user: state => state.user.user
     })
   },
   methods: {
     ...mapActions([
+      "getKey",
+      "getUser",
       "getProducts",
       "addToShoppingCart",
       "getShoppingCart",
@@ -68,6 +73,13 @@ export default {
       } else {
         cartItem.quantity += 1;
         this.updateShoppingCart(cartItem);
+      }
+    },
+    checkIfUserExist() {
+      if (!Object.keys(this.user).length === 0) {
+           this.getUser();
+      } else { 
+        return;
       }
     }
   }

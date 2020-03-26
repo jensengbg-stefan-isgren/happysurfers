@@ -34,7 +34,7 @@ import Navigation from "@/components/Navigation";
 
 export default {
   created() {
-    this.getUser();
+    this.checkIfUserExist();
     this.getOrderHistory();
   },
   components: {
@@ -51,7 +51,14 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["getOrderHistory", "getUser", "getUserOrderHistory"])
+    ...mapActions(["getOrderHistory", "getUser", "getUserOrderHistory"]),
+    checkIfUserExist() {
+      if (!Object.keys(this.user).length === 0) {
+        this.getUser();
+      } else {
+        return;
+      }
+    }
   }
 };
 </script>
