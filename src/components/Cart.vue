@@ -32,7 +32,7 @@
         <br />
         <button
           :class="cart <= 0 ? 'orderButtonEmpty' : 'orderButton'"
-          @click="toStatus(cart)"
+          @click="toStatus()"
           class="orderButton"
           :disabled="cart <= 0"
         >Take my money!</button>
@@ -53,13 +53,15 @@ export default {
     };
   },
   created() {
-    this.getUser();
-    this.getKey();
+    this.checkUserExist();
   },
+  mounted() {},
   computed: {
     ...mapState({
       cart: state => state.shoppingCart.cart,
-      user: state => state.user.user
+      user: state => state.user.user,
+      order: state => state.shoppingCart.order,
+      genericAccount: state => state.user.genericAccount
     }),
     ...mapGetters(["totalPrice"])
   },
@@ -68,7 +70,7 @@ export default {
     LoadingSpinner
   },
   methods: {
-    ...mapMutations(["countDown", "clearCart", "toggleCart"]),
+    ...mapMutations(["countDown", "clearCart", "toggleCart", "orderInfo"]),
     ...mapActions([
       "getKey",
       "getUser",
@@ -79,12 +81,12 @@ export default {
       "updateShoppingCart",
       "removeFromShoppingCart"
     ]),
-    toStatus(cart) {
+    toStatus() {
       let promise = new Promise(resolve => {
         let orderButton = document.querySelector(".orderButton");
         orderButton.innerHTML = "Skickar beställning";
         this.loading = true;
-        resolve(this.sendOrder(cart));
+        resolve(this.sendOrder(this.order));
       });
 
       promise.then(() => {
@@ -111,6 +113,13 @@ export default {
     },
     clearCart(cart) {
       this.clearShoppingCart(cart);
+    },
+    checkUserExist() {
+      if (Object.keys(this.user).length === 0) {
+        this.orderInfo({ items: this.cart, uuid: this.genericAccount.uuid });
+      } else {
+        this.orderInfo({ items: this.cart, uuid: this.user.uuid });
+      }
     }
   }
 };

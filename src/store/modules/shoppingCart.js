@@ -1,10 +1,18 @@
 export default {
   state: {
+    cart: [],
     showCart: false,
-    cart: []
+    order: {
+      items: [],
+      uuid: ""
+    }
   },
   mutations: {
-     clearCart(state) {
+    orderInfo(state, orderInfo) {
+      state.order.items = orderInfo.items;
+      state.order.uuid = orderInfo.uuid;
+    },
+    clearCart(state) {
       state.cart = [];
     },
     addToCart(state, product) {

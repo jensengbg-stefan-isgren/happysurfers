@@ -1,6 +1,7 @@
 export default {
   state: {
-    user: {}
+    user: {},
+    genericAccount: {}
   },
   mutations: {
     addUser(state, user) {
@@ -8,6 +9,9 @@ export default {
     },
     getUser(state, user) {
       state.user = user;
+    },
+    genericAccount(state, order) {
+      state.genericAccount = order;
     }
   },
   actions: {
@@ -57,8 +61,7 @@ export default {
       try {
         let response = await fetch(URL, options);
         let data = await response.json();
-        console.log(data);
-        return data;
+        context.commit("genericAccount", data);
       } catch (error) {
         console.log("CANT ADD TO USER", error);
       }
