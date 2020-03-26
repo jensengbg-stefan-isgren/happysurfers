@@ -8,7 +8,11 @@
       <h1 class="name">{{ user.name }}</h1>
       <p class="email">{{ user.email }}</p>
     </div>
-    <OrderHistory v-if="showReceipt" :receipt="receipt" @closeReceipt="closeReceipt" />
+    <OrderHistory
+      v-if="showReceipt"
+      :receipt="receipt"
+      @closeReceipt="closeReceipt"
+    />
     <section class="history">
       <h1 class="old_orders">Orderhistorik</h1>
       <ul>
@@ -70,10 +74,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["getUser", "getUserOrderHistory"])
-
-    ...mapActions(["getOrderHistory", "getUser", "getUserOrderHistory"]),
-
+    ...mapActions(["getUser", "getUserOrderHistory"]),
     openReceipt(item) {
       console.log(event);
       this.receipt = item;
