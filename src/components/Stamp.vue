@@ -1,13 +1,13 @@
 <template>
   <section class="stamp_section">
     <article class="stamp">
-      <img src="../assets/graphics/logo.svg" alt="" />
+      <img src="../assets/graphics/logo.svg" alt />
     </article>
     <article class="stamp">
-      <img src="../assets/graphics/logo.svg" alt="" />
+      <img src="../assets/graphics/logo.svg" alt />
     </article>
     <article class="stamp">
-      <img src="../assets/graphics/logo.svg" alt="" />
+      <img src="../assets/graphics/logo.svg" alt />
     </article>
   </section>
 </template>
@@ -21,7 +21,7 @@ export default {};
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: pink;
+  background-color: $brown;
   width: 100%;
   height: 30vh;
 }

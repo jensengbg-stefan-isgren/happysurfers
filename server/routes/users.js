@@ -7,5 +7,7 @@ router
   .post(userController.createUser)
   .get(userController.getUser);
 
+  router.route("/stamps").post(userController.addStamps)
+
 router.route("/:uuid").get(userController.getUserOrderHistory);
 module.exports = router;

@@ -13,7 +13,9 @@ exports.createUser = async (request, response) => {
   let user = new User({
     name: body.name,
     email: body.email,
-    uuid: mUUID4.toString()
+    uuid: mUUID4.toString(),
+    stampCounter: 0,
+    freeCoffee: 0
   });
   user
     .save()
@@ -35,4 +37,8 @@ exports.getUser = async (request, response) => {
 exports.getUserOrderHistory = async (request, response) => {
   let his = await history.find({ uuid: request.params.uuid });
   response.send(his);
+};
+
+exports.addStamps = async (request, response) => {
+  let his = await history.find({ uuid: request.params.uuid });
 };

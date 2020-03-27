@@ -13,14 +13,19 @@
 import Stamp from "@/components/Stamp";
 import MenuIcon from "@/components/MenuIcon";
 import Navigation from "@/components/Navigation";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
-  components: {
-    MenuIcon,
-    Navigation,
-    Stamp
+  created() {
+    this.getUser();
   },
-  methods: {},
+  components: {
+    Stamp,
+    MenuIcon,
+    Navigation
+  },
+  methods: {
+    ...mapActions(["getUser"])
+  },
   computed: {
     ...mapState({
       showMenu: state => state.menu.showMenu

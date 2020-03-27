@@ -86,7 +86,8 @@ export default {
       } catch (error) {
         console.log("CANT ADD TO USER", error);
       }
-    }
+    },
+    
   },
   getters: {
     totalPriceHistory(state) {
