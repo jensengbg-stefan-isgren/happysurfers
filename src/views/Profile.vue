@@ -203,7 +203,9 @@ li:last-child {
   width: 100%;
   height: 25rem;
   overflow: scroll;
+  overflow-x: hidden;
 }
+
 .old_orders {
   font-size: 1.4rem;
   font-family: $header;
