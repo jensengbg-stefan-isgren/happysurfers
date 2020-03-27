@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
 export default {
   computed: {
     ...mapState({
@@ -15,9 +15,7 @@ export default {
       stampCounter: state => state.user.stampCounter
     })
   },
-  methods: {
-    ...mapActions(["getUser"])
-  }
+  methods: {}
 };
 </script>
 
