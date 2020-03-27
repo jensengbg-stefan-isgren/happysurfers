@@ -2,11 +2,9 @@
   <section class="background">
     <section class="overlay">
       <div class="text">
-        <img class="logo" src="../assets/graphics/logo.svg" alt="" />
+        <img class="logo" src="../assets/graphics/logo.svg" alt />
         <h1>Välkommen till AirBean-familjen!</h1>
-        <p>
-          Genom att skapa ett konto nedan kan du spara och se din orderhistorik.
-        </p>
+        <p>Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</p>
       </div>
       <div class="inputs">
         <label for="name-input" class="labels">Namn</label>
@@ -22,9 +20,7 @@
         :class="!checked ? 'orderButtonEmpty' : 'orderButton'"
         :disabled="!checked"
         @click="createUser(userData)"
-      >
-        Brew me a cup!
-      </button>
+      >Brew me a cup!</button>
     </section>
   </section>
 </template>
@@ -123,15 +119,23 @@ export default {
   font-family: $body;
   font-size: 0.8rem;
   display: flex;
+  align-items: center;
 }
 .checkbox {
-  height: 1rem;
-  width: 1rem;
-  background: none;
-  border-radius: 6px;
+  height: 1.1rem;
+  width: 1.1rem;
+  border: 1px solid black;
+  border-radius: 50%;
   margin-right: 0.5rem;
   background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
 }
+.checkbox:checked {
+  background: #0e927d;
+}
+
 .orderButton,
 .orderButtonEmpty {
   align-self: center;
