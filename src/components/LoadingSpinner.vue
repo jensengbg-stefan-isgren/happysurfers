@@ -37,12 +37,12 @@ export default {};
   content: " ";
   display: block;
   position: absolute;
-  top: -80px;
+  top: 20px;
   left: 37px;
-  width: 20px;
-  height: 50px;
+  width: 3px;
+  height: 10px;
   border-radius: 20%;
-  background: #fff;
+  background: $pink;
 }
 .lds-spinner div:nth-child(1) {
   transform: rotate(0deg);

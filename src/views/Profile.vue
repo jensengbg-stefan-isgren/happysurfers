@@ -8,13 +8,9 @@
       <h1 class="name">{{ user.name }}</h1>
       <p class="email">{{ user.email }}</p>
     </div>
-    <OrderHistory
-      v-if="showReceipt"
-      :receipt="receipt"
-      @closeReceipt="closeReceipt"
-    />
+    <OrderHistory v-if="showReceipt" :receipt="receipt" @closeReceipt="closeReceipt" />
+    <h1 class="old_orders">Orderhistorik</h1>
     <section class="history">
-      <h1 class="old_orders">Orderhistorik</h1>
       <ul>
         <li
           class="orders"
@@ -24,10 +20,12 @@
         >
           <p class="order_nr">#{{ item.orderNumber }}</p>
           <p class="date">{{ item.timestamp }}</p>
+
           <p class="sum">total ordersumma</p>
           <p class="total_price">{{ item.totalValue }} kr</p>
         </li>
       </ul>
+
       <div class="total">
         <h5 class="total_spent">Totalt spenderat</h5>
         <p class="total_pr">{{ totalPriceHistory }} kr</p>
@@ -114,12 +112,17 @@ li {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
 }
+li:last-child {
+  border-bottom: 0;
+}
 
 .total {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin-left: 1.8rem;
   margin-right: 1.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  padding-top: 0.5rem;
 }
 
 .total_price,
@@ -176,6 +179,7 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 6rem;
 }
 
 .name {
@@ -197,14 +201,17 @@ li {
 
 .history {
   width: 100%;
+  height: 25rem;
+  overflow: scroll;
 }
 .old_orders {
-  margin-left: 1.8rem;
-  margin-bottom: 1rem;
   font-size: 1.4rem;
   font-family: $header;
   font-weight: 900;
   line-height: 120%;
+  text-align: left;
+  width: 85%;
+  padding-top: 3rem;
 }
 
 .navigation {
