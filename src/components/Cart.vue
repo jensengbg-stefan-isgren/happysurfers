@@ -1,6 +1,5 @@
 <template>
   <section class="bg_section">
-    <LoadingSpinner v-if="loading" class="spinner" />
     <section class="cartCard">
       <h1 class="primary">Din beställning</h1>
       <button @click="clearCart(cart)" v-if="cart != 0" class="remove_cart_btn">Töm varukorgen</button>
@@ -36,6 +35,7 @@
           class="orderButton"
           :disabled="cart <= 0"
         >Take my money!</button>
+        <LoadingSpinner v-if="loading" class="spinner" />
       </div>
     </section>
   </section>
@@ -84,8 +84,9 @@ export default {
     toStatus() {
       let promise = new Promise(resolve => {
         let orderButton = document.querySelector(".orderButton");
+        this.loading = true;
+        orderButton.classList.add("orderText");
         orderButton.innerHTML = "Skickar beställning";
-        this.loading = false;
         resolve(this.sendOrder(this.order));
       });
 
@@ -258,17 +259,17 @@ h3 {
 }
 
 .spinner {
-  background: rgba(0, 0, 0, 0.822);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
-  transform: translate(-50%, -50%);
-  height: 100%;
-  width: 375px;
-  top: 50%;
-  left: 50%;
+  right: 2rem;
+  bottom: 5px;
   z-index: 100;
+}
+
+.orderText {
+  font-size: 1.2rem;
+  padding-left: 0.5rem;
+  text-align: left;
+  font-stretch: $header;
 }
 
 .arrow {
