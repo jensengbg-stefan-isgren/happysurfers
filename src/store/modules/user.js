@@ -2,7 +2,9 @@ export default {
   state: {
     user: {},
     genericAccount: {},
-    orderHistory: []
+    orderHistory: [],
+    stampCounter: Number,
+    freeCoffee: Number
   },
   mutations: {
     addUser(state, user) {
@@ -10,6 +12,8 @@ export default {
     },
     getUser(state, user) {
       state.user = user;
+      state.stampCounter = user.stampCounter;
+      state.freeCoffee = user.freeCoffee;
     },
     genericAccount(state, order) {
       state.genericAccount = order;
@@ -81,13 +85,28 @@ export default {
       try {
         let response = await fetch(URL, options);
         let data = await response.json();
-        console.log(data);
         commit("addUserOrderHistory", data);
       } catch (error) {
         console.log("CANT ADD TO USER", error);
       }
     },
-    
+    async addStamps(context, user) {
+      const URL = `http://localhost:5000/user/${user}`;
+      let options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
+      try {
+        let response = await fetch(URL, options);
+        let data = await response.json();
+        console.log(context);
+        return data;
+      } catch (error) {
+        console.log("CANT ADD TO USER", error);
+      }
+    }
   },
   getters: {
     totalPriceHistory(state) {

@@ -1,42 +1,46 @@
 <template>
   <section class="stamp_section">
-    <article class="stamp">
-      <img src="../assets/graphics/logo.svg" alt />
-    </article>
-    <article class="stamp">
-      <img src="../assets/graphics/logo.svg" alt />
-    </article>
-    <article class="stamp">
-      <img src="../assets/graphics/logo.svg" alt />
+    <article v-for="(item,index) in stampCounter" :key="index" class="stamp">
+      <img src="../assets/graphics/cup.png" alt />
     </article>
   </section>
 </template>
 
 <script>
-export default {};
+import { mapState, mapActions } from "vuex";
+export default {
+  computed: {
+    ...mapState({
+      user: state => state.user.user,
+      stampCounter: state => state.user.stampCounter
+    })
+  },
+  methods: {
+    ...mapActions(["getUser"])
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 .stamp_section {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  background-color: $brown;
   width: 100%;
   height: 30vh;
 }
 
 .stamp {
+  margin: 0 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100px;
   height: 100px;
-  background-color: whitesmoke;
   border-radius: 5px;
 }
 
 img {
-  height: 70px;
+  height: 130px;
 }
 </style>
