@@ -40,5 +40,14 @@ exports.getUserOrderHistory = async (request, response) => {
 };
 
 exports.addStamps = async (request, response) => {
-  let his = await history.find({ uuid: request.params.uuid });
+  let user = await User.findOne({ uuid: request.params.uuid });
+  if (user.stampCounter < 3) {
+    user.stampCounter++;
+  } else {
+    user.stampCounter = 1;
+    user.freeCoffee++;
+  }
+
+  user.save();
+  response.send(user);
 };

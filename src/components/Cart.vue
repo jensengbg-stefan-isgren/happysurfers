@@ -79,7 +79,8 @@ export default {
       "getShoppingCart",
       "clearShoppingCart",
       "updateShoppingCart",
-      "removeFromShoppingCart"
+      "removeFromShoppingCart",
+      "addStamps"
     ]),
     toStatus() {
       let promise = new Promise(resolve => {
@@ -90,6 +91,7 @@ export default {
       });
 
       promise.then(() => {
+        this.addStamps(this.user.uuid);
         this.loading = false;
         this.countDown();
         this.clearCart();
