@@ -4,6 +4,7 @@ import user from "./modules/user";
 import products from "./modules/products";
 import shoppingCart from "./modules/shoppingCart";
 import menu from "./modules/menu";
+import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -78,7 +79,6 @@ export default new Vuex.Store({
     products,
     shoppingCart,
     menu
-  }
+  },
+  plugins: [createPersistedState()]
 });
-
-

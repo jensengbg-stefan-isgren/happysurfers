@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
 import MenuIcon from "@/components/MenuIcon";
 import FreeCoffee from "@/components/FreeCoffee";
 import Navigation from "@/components/Navigation";
@@ -24,18 +24,14 @@ export default {
     FreeCoffee,
     Navigation
   },
-  created() {
-    this.getUser();
-  },
+  created() {},
   computed: {
     ...mapState({
       showMenu: state => state.menu.showMenu,
       freeCoffee: state => state.user.freeCoffee
     })
   },
-  methods: {
-    ...mapActions(["getUser"])
-  }
+  methods: {}
 };
 </script>
 
