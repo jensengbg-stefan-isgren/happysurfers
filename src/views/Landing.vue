@@ -4,7 +4,7 @@
   </section>
 </template>
 
-<script>
+<script> 
 export default {
   name: "landing"
 };
@@ -13,7 +13,7 @@ export default {
 <style lang="scss" scoped>
 .landing {
   width: 23.5rem;
-  margin: auto;
+  margin: auto; 
   height: 100vh;
   display: flex;
   justify-content: center;

@@ -23,7 +23,7 @@ app.use("/orderhistory", orderRouter);
 
 mongoose
   .connect(
-    "mongodb+srv://admin:Kungen1982@cluster0-lhhov.mongodb.net/airbean?retryWrites=true&w=majority",
+    "mongodb+srv://jensengbg:jensengbg1234@cluster0-lhhov.mongodb.net/airbean?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useCreateIndex: true,

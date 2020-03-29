@@ -4,13 +4,15 @@
       <Navigation class="navigation" v-if="showMenu" />
       <MenuIcon class="menu_icon" />
       <h1 class="title">Stämpelkort</h1>
-      <p>Tre beställningar, vid nästa får du en gratis kaffe!</p>
+      <p>Samla tre stämplar och nästa kaffe är gratis</p>
       <Stamp />
+      <EmptyStamps class="empty_stamps" v-if="Object.keys(user).length === 0" />
     </section>
   </div>
 </template>
 
 <script>
+import EmptyStamps from "@/components/EmptyStamps";
 import Stamp from "@/components/Stamp";
 import MenuIcon from "@/components/MenuIcon";
 import Navigation from "@/components/Navigation";
@@ -22,14 +24,17 @@ export default {
   components: {
     Stamp,
     MenuIcon,
-    Navigation
+    Navigation,
+    EmptyStamps
   },
   methods: {
     ...mapActions(["getUser"])
   },
   computed: {
     ...mapState({
-      showMenu: state => state.menu.showMenu
+      showMenu: state => state.menu.showMenu,
+      user: state => state.user.user,
+      stampCounter: state => state.user.stampCounter
     })
   }
 };
@@ -61,5 +66,12 @@ p {
   font-family: $body;
   font-weight: bold;
   color: $pink;
+}
+
+.empty_stamps {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
