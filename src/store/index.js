@@ -80,5 +80,5 @@ export default new Vuex.Store({
     shoppingCart,
     menu
   },
-  plugins: [createPersistedState()]
+  plugins: [createPersistedState({ storage: window.sessionStorage })]
 });

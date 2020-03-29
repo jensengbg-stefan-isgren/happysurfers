@@ -27,13 +27,11 @@ exports.getKey = async (request, response) => {
     });
     user
       .save()
-      .then(doc => {
-        // console.log(doc);
+      .then(user => {
+        response.send(user);
       })
       .catch(error => {
-        // console.log(error);
+        console.log(error);
       });
-
-    response.send(user);
   }
 };
