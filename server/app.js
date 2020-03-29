@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -23,7 +24,7 @@ app.use("/orderhistory", orderRouter);
 
 mongoose
   .connect(
-    "mongodb+srv://jensengbg:jensengbg1234@cluster0-lhhov.mongodb.net/airbean?retryWrites=true&w=majority",
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-lhhov.mongodb.net/airbean?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useCreateIndex: true,
