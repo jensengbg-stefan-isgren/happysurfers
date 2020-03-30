@@ -202,8 +202,17 @@ li:last-child {
 .history {
   width: 100%;
   height: 25rem;
-  overflow: scroll;
+  overflow: auto;
   overflow-x: hidden;
+}
+
+.history::-webkit-scrollbar {
+  background: #3a322e;
+  border-radius: 6px;
+}
+.history::-webkit-scrollbar-thumb {
+  background: #534a46;
+  border-radius: 6px;
 }
 
 .old_orders {
