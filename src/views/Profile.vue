@@ -48,15 +48,6 @@ export default {
       receipt: {}
     };
   },
-  created() {
-    let promise = new Promise(resolve => {
-      resolve(this.getUser());
-    });
-
-    promise.then(() => {
-      this.getUserOrderHistory(this.user.uuid);
-    });
-  },
   components: {
     Login,
     MenuIcon,
