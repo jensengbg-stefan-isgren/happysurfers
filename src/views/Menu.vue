@@ -81,15 +81,13 @@ export default {
 <style lang="scss" scoped>
 .poly {
   position: absolute;
-  left: 83.47%;
   right: 8%;
   top: 8%;
-  bottom: 87.46%;
   width: 0;
   height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 20px solid white;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 26px solid white;
   border-radius: 2px;
   z-index: 10;
 }
