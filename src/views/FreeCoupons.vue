@@ -2,12 +2,9 @@
   <div>
     <section class="coupons_section">
       <Navigation class="navigation" v-if="showMenu" />
+      <EmptyStamps class="empty_stamps" v-if="Object.keys(user).length === 0" />
       <h1 class="title">Gratiskuponger</h1>
-      <FreeCoffee
-        class="qr_code"
-        v-for="(item, index) in this.freeCoffee"
-        :key="index"
-      />
+      <FreeCoffee class="qr_code" v-for="(item, index) in this.freeCoffee" :key="index" />
       <MenuIcon class="menu_icon" />
     </section>
   </div>
@@ -15,6 +12,7 @@
 
 <script>
 import { mapState } from "vuex";
+import EmptyStamps from "@/components/EmptyStamps";
 import MenuIcon from "@/components/MenuIcon";
 import FreeCoffee from "@/components/FreeCoffee";
 import Navigation from "@/components/Navigation";
@@ -22,13 +20,15 @@ export default {
   components: {
     MenuIcon,
     FreeCoffee,
-    Navigation
+    Navigation,
+    EmptyStamps
   },
   created() {},
   computed: {
     ...mapState({
       showMenu: state => state.menu.showMenu,
-      freeCoffee: state => state.user.freeCoffee
+      freeCoffee: state => state.user.freeCoffee,
+      user: state => state.user.user
     })
   },
   methods: {}
@@ -53,6 +53,29 @@ export default {
   padding-top: 7.5rem;
   font-family: $header;
   font-size: 2.6rem;
+}
+
+p {
+  text-align: center;
+  font-size: 14px;
+  font-family: $body;
+  font-weight: bold;
+  color: $pink;
+}
+
+.empty_stamps {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.navigation {
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .qr_code {

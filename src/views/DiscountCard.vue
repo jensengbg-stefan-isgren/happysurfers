@@ -18,9 +18,6 @@ import MenuIcon from "@/components/MenuIcon";
 import Navigation from "@/components/Navigation";
 import { mapState, mapActions } from "vuex";
 export default {
-  created() {
-    this.getUser();
-  },
   components: {
     Stamp,
     MenuIcon,
@@ -70,8 +67,16 @@ p {
 
 .empty_stamps {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.navigation {
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>

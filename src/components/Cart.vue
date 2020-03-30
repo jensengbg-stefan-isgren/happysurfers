@@ -92,9 +92,10 @@ export default {
       });
 
       promise.then(() => {
-        this.addStamps(this.user.uuid);
+        if (!Object.keys(this.user).length === 0) {
+          this.addStamps(this.user.uuid);
+        }
         this.loading = false;
-        this.countDown();
         this.clearCart();
         this.toggleCart();
         this.$router.push("/status");
