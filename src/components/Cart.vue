@@ -92,9 +92,7 @@ export default {
       });
 
       promise.then(() => {
-        if (!Object.keys(this.user).length === 0) {
-          this.addStamps(this.user.uuid);
-        }
+        this.addStamps(this.user.uuid);
         this.loading = false;
         this.clearCart();
         this.toggleCart();

@@ -33,6 +33,9 @@ mongoose
   )
   .then(() => {
     console.log("connected to databaase");
+  })
+  .catch(error => {
+    console.log(`ERROR: ${error}`);
   });
 
 app.listen(5000, () => console.log(`Server started on port ${PORT}`));
