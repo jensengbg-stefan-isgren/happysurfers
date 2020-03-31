@@ -22,7 +22,9 @@ export default {
   name: "status",
   methods: {},
   computed: {
-    ...mapState(["activeOrder"])
+    ...mapState({
+      activeOrder: state => state.order.activeOrder
+    })
   }
 };
 </script>
