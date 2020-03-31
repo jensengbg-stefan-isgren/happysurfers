@@ -1,6 +1,8 @@
 <template>
   <section class="about">
-    <Navigation v-if="showMenu" class="navigation" />
+    <transition name="fade">
+      <Navigation v-if="showMenu" class="navigation" />
+    </transition>
     <MenuIcon class="menu_icon" />
     <h1 class="title">Vårt Kaffe</h1>
     <article class="about_info">
@@ -56,6 +58,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/transitions";
 .title {
   text-align: center;
   padding-top: 140px;

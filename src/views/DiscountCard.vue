@@ -1,7 +1,9 @@
 <template>
   <div>
     <section class="discount_section">
-      <Navigation class="navigation" v-if="showMenu" />
+      <transition name="fade">
+        <Navigation class="navigation" v-if="showMenu" />
+      </transition>
       <MenuIcon class="menu_icon" />
       <h1 class="title">Stämpelkort</h1>
       <p>Samla tre stämplar och nästa kaffe är gratis</p>
@@ -38,6 +40,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/transitions";
 .discount_section {
   position: relative;
   background: url(../assets/graphics/graphics-header.svg) center top no-repeat,

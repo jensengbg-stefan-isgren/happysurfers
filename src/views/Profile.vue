@@ -1,7 +1,9 @@
 <template>
   <section class="order_history">
     <MenuIcon class="menu_icon" />
-    <Navigation class="navigation" v-if="showMenu" />
+    <transition name="fade">
+      <Navigation class="navigation" v-if="showMenu" />
+    </transition>
     <Login v-if="Object.keys(user).length === 0" />
     <div class="profile">
       <img class="portrait" src="../assets/graphics/sixten.png" alt />
@@ -86,6 +88,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/transitions";
 li {
   margin-bottom: 10px;
 }

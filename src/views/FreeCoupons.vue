@@ -1,7 +1,9 @@
 <template>
   <div>
     <section class="coupons_section">
-      <Navigation class="navigation" v-if="showMenu" />
+      <transition name="fade">
+        <Navigation class="navigation" v-if="showMenu" />
+      </transition>
       <EmptyStamps class="empty_stamps" v-if="Object.keys(user).length === 0" />
       <h1 class="title">Gratiskuponger</h1>
       <FreeCoffee class="qr_code" v-for="(item, index) in this.freeCoffee" :key="index" />
@@ -36,6 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/transitions";
 .coupons_section {
   position: relative;
   background: url(../assets/graphics/graphics-header.svg) center top no-repeat,
