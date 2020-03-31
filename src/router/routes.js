@@ -1,12 +1,11 @@
-import Landing from "@/views/Landing";
-import About from "@/views/About";
 import Menu from "@/views/Menu";
-import Profile from "@/views/Profile";
-import DiscountCard from "@/views/DiscountCard";
-import FreeCoupons from "@/views/FreeCoupons";
-
+import About from "@/views/About";
 import Status from "@/views/Status";
+import Landing from "@/views/Landing";
+import Profile from "@/views/Profile";
 import Nav from "@/components/Navigation";
+import FreeCoupons from "@/views/FreeCoupons";
+import DiscountCard from "@/views/DiscountCard";
 
 export default [
   {

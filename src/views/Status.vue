@@ -6,9 +6,8 @@
         <span>#{{ activeOrder.orderNumber }}</span>
       </p>
       <img src="../assets/graphics/drone.svg" alt class="drone" />
-      <h1 v-if="Object.keys(activeOrder) === 0">Ingen order</h1>
+      <h1 v-if="Object.keys(activeOrder).length === 0">Du har inga aktiva ordrar just nu</h1>
       <h1 v-else>Din beställning är påväg!</h1>
-
       <p class="eta">
         ETA
         <span>{{ activeOrder.eta }}</span>
@@ -24,7 +23,9 @@ export default {
   name: "status",
   methods: {},
   computed: {
-    ...mapState(["activeOrder"])
+    ...mapState({
+      activeOrder: state => state.order.activeOrder
+    })
   }
 };
 </script>

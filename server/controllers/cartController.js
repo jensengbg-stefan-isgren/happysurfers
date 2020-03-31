@@ -20,13 +20,12 @@ exports.addToShoppingCart = (request, response) => {
 
   cartItem
     .save()
-    .then(doc => {
-      // console.log(doc);
+    .then(cartItem => {
+      response.send(cartItem);
     })
     .catch(error => {
-      // console.log(error);
+      console.log(error);
     });
-  response.send(cartItem);
 };
 
 exports.showShoppingCart = async (request, response) => {

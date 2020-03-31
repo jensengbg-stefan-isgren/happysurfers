@@ -81,7 +81,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/transitions";
 .poly {
   position: absolute;
   right: 8%;
