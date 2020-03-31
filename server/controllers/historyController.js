@@ -59,21 +59,12 @@ exports.sendOrder = async (request, response) => {
 
   obj
     .save()
-    .then(doc => {
-      // console.log(doc);
+    .then(obj => {
+      setTimeout(() => {
+        response.send(obj);
+      }, 2000);
     })
     .catch(error => {
-      // console.log(error);
+      console.log(error);
     });
-
-  // const order = {
-  //   date: dateFormat(),
-  //   eta: timeToDelivery(),
-  //   orderNr: generateOrderNr(),
-  //   orderItems: orderedItems
-  // };
-
-  setTimeout(() => {
-    response.send(obj);
-  }, 2000);
 };
