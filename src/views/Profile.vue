@@ -13,7 +13,7 @@
     <OrderHistory v-if="showReceipt" :receipt="receipt" @closeReceipt="closeReceipt" />
     <h1 class="old_orders">Orderhistorik</h1>
     <section class="history">
-      <ul>
+      <ul class="history_scroll">
         <li
           class="orders"
           v-for="(item, index) in orderHistory"
@@ -76,7 +76,6 @@ export default {
   methods: {
     ...mapActions(["getUser", "getUserOrderHistory"]),
     openReceipt(item) {
-      console.log(event);
       this.receipt = item;
       this.showReceipt = true;
     },
@@ -202,18 +201,18 @@ li:last-child {
   width: 6.3rem;
 }
 
-.history {
+.history_scroll {
   width: 100%;
   height: 25rem;
   overflow: auto;
   overflow-x: hidden;
 }
 
-.history::-webkit-scrollbar {
+.history_scroll::-webkit-scrollbar {
   background: #3a322e;
   border-radius: 6px;
 }
-.history::-webkit-scrollbar-thumb {
+.history_scroll::-webkit-scrollbar-thumb {
   background: #534a46;
   border-radius: 6px;
 }
