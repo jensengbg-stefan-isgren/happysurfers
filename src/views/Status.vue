@@ -5,7 +5,7 @@
         Ordernummer
         <span>#{{ activeOrder.orderNumber }}</span>
       </p>
-      <img src="../assets/graphics/drone.svg" alt />
+      <img src="../assets/graphics/drone.svg" alt class="drone" />
       <h1>Din beställning är påväg!</h1>
       <p class="eta">
         ETA
@@ -80,6 +80,28 @@ export default {
 
   span {
     font-weight: 900;
+  }
+}
+
+.drone {
+  animation-name: jumping;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+}
+
+@keyframes jumping {
+  0% {
+    left: 50px;
+    transform: rotate(30deg) translateY(50px);
+  }
+  50% {
+    left: 300px;
+    transform: rotate(-30deg) translateX(50px) scale(0.5);
+  }
+  100% {
+    left: 50px;
+    transform: rotate(30deg) translateX(0px) translateY(50px);
   }
 }
 </style>
