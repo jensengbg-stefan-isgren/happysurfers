@@ -2,8 +2,10 @@
   <section class="menu">
     <ShoppingCart class="shopping_cart" @click.native="toggleCart()" />
     <aside class="poly" v-if="showCart"></aside>
-    <Cart class="cart" v-if="showCart" />
-    <Navigation class="navigation" v-if="showMenu" />
+    <transition name="fade">
+      <Cart class="cart" v-if="showCart" />
+      <Navigation class="navigation" v-if="showMenu" />
+    </transition>
     <MenuIcon class="menu_icon" />
     <h1 class="title">Meny</h1>
     <div
@@ -79,6 +81,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/transitions";
 .poly {
   position: absolute;
   right: 8%;
