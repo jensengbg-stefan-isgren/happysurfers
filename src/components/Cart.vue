@@ -83,6 +83,7 @@ export default {
       "addStamps"
     ]),
     toStatus() {
+      clearInterval(this.$store.state.intervalID);
       let promise = new Promise(resolve => {
         let orderButton = document.querySelector(".orderButton");
         this.loading = true;
