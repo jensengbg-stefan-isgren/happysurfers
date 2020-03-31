@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 mongoose.pluralize(null);
 const historySchema = require("../model/historyModel");
 const orderHistory = mongoose.model("orderhistory", historySchema);
+const userSchema = require("../model/userModel");
+const User = mongoose.model("users", userSchema);
 
 let dateFormat = () => {
   let today = new Date();
@@ -67,4 +69,15 @@ exports.sendOrder = async (request, response) => {
     .catch(error => {
       console.log(error);
     });
+};
+
+exports.clearDatabase = async (request, response) => {
+  await User.deleteMany();
+  await orderHistory.deleteMany();
+
+  let message = {
+    status: "deleted users and orderhistory from DB"
+  };
+
+  response.send(message);
 };

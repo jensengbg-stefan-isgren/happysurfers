@@ -83,7 +83,6 @@ export default {
       "addStamps"
     ]),
     toStatus() {
-      clearInterval(this.$store.state.intervalID);
       let promise = new Promise(resolve => {
         let orderButton = document.querySelector(".orderButton");
         this.loading = true;
@@ -93,7 +92,11 @@ export default {
       });
 
       promise.then(() => {
-        this.addStamps(this.user.uuid);
+        if (Object.keys(this.user).length === 0) {
+          console.log("finns ingen användare skapad");
+        } else {
+          this.addStamps(this.user.uuid);
+        }
         this.loading = false;
         this.clearCart();
         this.toggleCart();
