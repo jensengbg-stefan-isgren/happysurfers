@@ -1,9 +1,19 @@
 <template>
   <div id="app">
-    <router-view />
+    <transition name="welcome">
+      <router-view />
+    </transition>
   </div>
 </template>
 
-<style lang="scss">
+<script>
+export default {};
+</script>
 
+<style lang="scss">
+@import "./styles/transitions";
+* {
+  margin: 0;
+  padding: 0;
+}
 </style>
